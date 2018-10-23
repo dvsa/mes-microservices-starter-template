@@ -1,0 +1,37 @@
+{
+  "name": "mes-journal-service",
+  "version": "0.1.0",
+  "author": "DVSA",
+  "license": "MIT",
+  "description": "A suite of Lambda functions for CRUD of driving test examiner journal entries",
+  "homepage": "https://github.com/dvsa/mes-journal-service#README.md",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dvsa/mes-journal-service.git"
+  },
+  "dependencies": {
+    "redis": "^2.8.0"
+  },
+  "devDependencies": {
+    "@types/aws-lambda": "^8.10.13",
+    "@types/jest": "^23.3.7",
+    "@types/node": "^10.12.0",
+    "bestzip": "^2.1.2",
+    "git-rev-sync": "^1.12.0",
+    "jest": "^23.6.0",
+    "rimraf": "^2.6.2",
+    "ts-loader": "^5.2.2",
+    "typescript": "^3.1.3",
+    "webpack": "^4.22.0",
+    "webpack-cli": "^3.1.2"
+  },
+  "scripts": {
+    "clean": "rimraf build",
+    "compile": "tsc",
+    "package": "webpack && node zip.js",
+    "test": "jest"
+  },
+  "bugs": {
+    "url": "https://github.com/dvsa/mes-journal-service/issues"
+  }
+}
