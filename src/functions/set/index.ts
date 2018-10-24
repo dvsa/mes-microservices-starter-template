@@ -1,8 +1,9 @@
 import createRedisClient from '../../utils/createRedisClient';
 import createResponse from '../../utils/createResponse';
 import { Context, Callback } from 'aws-lambda';
+import { RedisClient } from 'redis';
 
-const redisClient = createRedisClient();
+const redisClient: RedisClient = createRedisClient();
 
 export function handler(event: any, context: Context, callback: Callback) {
   context.callbackWaitsForEmptyEventLoop = false;
