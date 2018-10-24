@@ -1,3 +1,3 @@
 export default {
-    redisUrl: process.env.REDIS_URL,
+  redisUrl: () => process.env.REDIS_URL,
 };

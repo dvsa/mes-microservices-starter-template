@@ -1,38 +1,40 @@
-import redisClient from '../../utils/createRedisClient';
+import createRedisClient from '../../utils/createRedisClient';
 import createResponse from '../../utils/createResponse';
-import { Context, Callback } from  'aws-lambda';
+import { Context, Callback } from 'aws-lambda';
+
+const redisClient = createRedisClient();
 
 export function handler(event: any, context: Context, callback: Callback) {
-    context.callbackWaitsForEmptyEventLoop = false;
-    set(event.queryStringParameters.email, event.data, callback);
+  context.callbackWaitsForEmptyEventLoop = false;
+  set(event.queryStringParameters.email, event.data, callback);
 }
 
 function set(email: string, data: any, callback: Callback) {
-    const escapedString = JSON.stringify(data);
-    function onSet(err, data) {
-        let message;
-        let response;
+  const escapedString = JSON.stringify(data);
+  function onSet(err, data) {
+    let message;
+    let response;
 
-        if (err) {
-            message = 'Error'
-            response = createResponse({
-                    body: {
-                        message,
-                        err,
-                    },
-                    statusCode: 500,
-            })
-            callback(response);
-        }
-
-        message = 'Success'
-        response = createResponse({
-            body: {
-                message,
-                data,
-            }
-        })
-        callback(null, response);
+    if (err) {
+      message = 'Error';
+      response = createResponse({
+        body: {
+          message,
+          err,
+        },
+        statusCode: 500,
+      });
+      callback(response);
     }
-    redisClient.set(email, escapedString, onSet);
+
+    message = 'Success';
+    response = createResponse({
+      body: {
+        message,
+        data,
+      },
+    });
+    callback(null, response);
+  }
+  redisClient.set(email, escapedString, onSet);
 }
