@@ -1,7 +1,7 @@
-import { createRedisClient } from 'redis';
+import { createClient } from 'redis';
 import config from './config';
 
-const client = createRedisClient(config.redisUrl());
+const client = createClient(config.redisUrl());
 
 client.on('ready', () => {
   console.log('Redis client: ready');
