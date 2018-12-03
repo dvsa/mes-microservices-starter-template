@@ -14,10 +14,11 @@ function generateVersion() {
 }
 
 const version = generateVersion();
+const gitRev = git.short();
 fs.mkdir(artifactDir, () => {
     fs.readdirSync(bundleDir).forEach(file => {
         const filenameNoExt = file.slice(0, file.lastIndexOf('.'));
-        const zipFilename = `${filenameNoExt}-${version}-${git.short()}.zip`;
+        const zipFilename = `${filenameNoExt}-${version}-${gitRev}.zip`;
         zip({
             cwd: bundleDir,
             source: file,
@@ -31,4 +32,19 @@ fs.mkdir(artifactDir, () => {
             process.exit(1);
         });
     });
+
+    const coverageDir = 'coverage'
+    if (fs.existsSync(coverageDir)) {
+        const coverageFilename = `journal-coverage-${version}-${gitRev}.zip`;
+        zip({
+            cwd: '.',
+            source: 'coverage',
+            destination: path.join(artifactDir, coverageFilename)
+        }).then(() => {
+            const outFile = path.join(artifactDir, coverageFilename)
+            console.log(`COVERAGE ARTIFACT: ${coverageDir} => ${outFile}`);
+        });
+    } else {
+        console.log('No coverage found');
+    }
 });

@@ -35,7 +35,7 @@
     "compile": "tsc",
     "lint": "tslint --project .",
     "package": "webpack && node zip.js",
-    "test": "jest",
+    "test": "jest --coverage",
     "testw": "jest --watch"
   },
   "bugs": {
