@@ -22,10 +22,7 @@ module.exports = {
     ],
   },
   resolve: {
-    extensions: [ '.ts', '.js', '.jsx', '.json' ],
-    alias: {
-        'hiredis': path.join(__dirname, 'aliases/hiredis.js'),
-    },
+    extensions: [ '.ts', '.js', '.jsx', '.json' ]
   },
   output: {
     filename: `[name].js`,
