@@ -9,7 +9,9 @@
     "type": "git",
     "url": "git+https://github.com/dvsa/mes-journal-service.git"
   },
-  "dependencies": {},
+  "dependencies": {
+    "inversify": "^5.0.1"
+  },
   "devDependencies": {
     "@types/aws-lambda": "^8.10.13",
     "@types/jasmine": "^2.8.9",

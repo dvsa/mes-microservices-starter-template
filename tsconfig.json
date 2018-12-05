@@ -2,11 +2,13 @@
     "compilerOptions": {
       "outDir": "./build",
       "allowJs": false,
+      "lib": ["es2017"],
       "target": "es5",
       "types" : [
         "node",
         "jasmine",
-      ]
+      ],
+      "experimentalDecorators": true
     },
     "include": [
       "./src/**/*"
@@ -14,5 +16,5 @@
     "exclude": [
       "node_modules",
       "src/**/*.spec.ts",
-    ],
+    ]
   }

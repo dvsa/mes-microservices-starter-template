@@ -1,38 +1,13 @@
-import createRedisClient from '../../utils/createRedisClient';
-import createResponse from '../../utils/createResponse';
 import { APIGatewayProxyEvent, Context, Callback } from 'aws-lambda';
+import Journal from '../../interfaces/Journal';
+import context, { ServiceIdentifiers } from './config/context';
+import { JournalRetriever } from './service/JournalRetriever';
+import createResponse from '../../utils/createResponse';
+
+const journalRetriever = context.get<JournalRetriever>(ServiceIdentifiers.JournalRetriever);
 
 export function handler(event: APIGatewayProxyEvent, context: Context, callback: Callback) {
-  context.callbackWaitsForEmptyEventLoop = false;
-  get(event.queryStringParameters.email, callback);
-}
-
-function get(email: string, callback: Callback) {
-  function onGet(err, resp) {
-    let message;
-    let response;
-
-    if (err) {
-      message = 'Error';
-      response = createResponse({
-        body: {
-          message,
-          err,
-        },
-        statusCode: 500,
-      });
-      callback(response);
-    }
-
-    const data = JSON.parse(resp);
-    message = 'Success';
-    response = createResponse({
-      body: {
-        message,
-        data,
-      },
-    });
-    callback(null, response);
-  }
-  redisClient.get(email, onGet);
+  const journal: Journal = journalRetriever.getJournal();
+  const response = createResponse(journal);
+  callback(null, response);
 }
