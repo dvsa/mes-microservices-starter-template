@@ -28,6 +28,8 @@ To build a subset of the functions, pass a comma separated list of function name
 npm run package -- get,set
 ```
 
+N.b. The build requires [jq](https://github.com/stedolan/jq).
+
 ## Test
 
 To run the unit tests, simply run:
