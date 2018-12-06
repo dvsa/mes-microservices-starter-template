@@ -33,7 +33,7 @@
     "clean": "rimraf build",
     "compile": "tsc",
     "lint": "tslint --project .",
-    "package": "webpack && node zip.js",
+    "package": "./package.sh",
     "test": "jest --coverage",
     "testw": "jest --watch"
   },
