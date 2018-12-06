@@ -17,8 +17,6 @@
     "@types/jasmine": "^2.8.9",
     "@types/jest": "^23.3.7",
     "@types/node": "^10.12.0",
-    "bestzip": "^2.1.2",
-    "git-rev-sync": "^1.12.0",
     "jest": "^23.6.0",
     "rimraf": "^2.6.2",
     "ts-jest": "^23.10.4",
