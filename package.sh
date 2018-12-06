@@ -8,12 +8,12 @@ artifact_dir="build/artifacts/"
 version_num=$(node version.js)
 git_rev=$(git rev-parse --short HEAD)
 
+mkdir -p ${artifact_dir}
 for func_dir in src/functions/*; do
   func_name=$(basename ${func_dir})
   bundle_path="${bundle_dir}${func_name}.js"
   zip_filename="${func_name}-${version_num}-${git_rev}.zip"
   zip_path="${artifact_dir}${zip_filename}"
-  mkdir -p build/artifacts
   zip -Xj ${zip_path} ${bundle_path}
   echo "LAMBDA ARTIFACT: ${bundle_path} => ${zip_path}"
 done
