@@ -14,7 +14,7 @@ for func_dir in src/functions/*; do
   zip_filename="${func_name}-${version_num}-${git_rev}.zip"
   zip_path="${artifact_dir}${zip_filename}"
   mkdir -p build/artifacts
-  zip -X ${zip_path} ${bundle_path}
+  zip -Xj ${zip_path} ${bundle_path}
   echo "LAMBDA ARTIFACT: ${bundle_path} => ${zip_path}"
 done
 
