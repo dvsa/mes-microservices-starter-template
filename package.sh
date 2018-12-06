@@ -23,4 +23,6 @@ if [ -d coverage ]; then
   coverage_path="${artifact_dir}${coverage_filename}"
   zip ${coverage_path} coverage
   echo "COVERAGE ARTIFACT: coverage => ${coverage_path}"
+else
+  echo "No coverage report found"
 fi
