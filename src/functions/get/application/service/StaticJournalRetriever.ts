@@ -1,5 +1,5 @@
 import { JournalRetriever } from './JournalRetriever';
-import Journal from '../../../interfaces/Journal';
+import Journal from '../../../../common/domain/Journal';
 import { injectable } from 'inversify';
 
 @injectable()

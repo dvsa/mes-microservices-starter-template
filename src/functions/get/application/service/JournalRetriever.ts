@@ -1,4 +1,4 @@
-import Journal from '../../../interfaces/Journal';
+import Journal from '../../../../common/domain/Journal';
 
 export interface JournalRetriever {
   getJournal(): Journal;

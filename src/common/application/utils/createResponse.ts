@@ -1,10 +1,10 @@
-import { IResponse } from '../interfaces/IResponse';
+import Response from '../api/Response';
 
 export default (
   body: {},
   statusCode = 200,
   reqHeaders: { [id: string]: string } = {},
-): IResponse => {
+): Response => {
   const accessControlAllowOriginHeader = {
     'Access-Control-Allow-Origin': '*', // Required for CORS support to work
   };
