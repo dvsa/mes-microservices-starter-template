@@ -1,11 +1,11 @@
 import { JournalRetriever } from './JournalRetriever';
-import Journal from '../../../../common/domain/Journal';
+import { ExaminerWorkSchedule } from '../../../../common/domain/Journal.d';
 import { injectable } from 'inversify';
 
 @injectable()
 export class StaticJournalRetriever implements JournalRetriever {
 
-  getJournal(): Journal {
+  getJournal(): ExaminerWorkSchedule {
     return {
       staffNumber: 1234,
       examinerName: {},

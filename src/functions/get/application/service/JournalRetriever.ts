@@ -1,5 +1,5 @@
-import Journal from '../../../../common/domain/Journal';
+import { ExaminerWorkSchedule } from '../../../../common/domain/Journal.d';
 
 export interface JournalRetriever {
-  getJournal(): Journal;
+  getJournal(): ExaminerWorkSchedule;
 }
