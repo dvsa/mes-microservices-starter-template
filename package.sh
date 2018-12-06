@@ -5,7 +5,7 @@ npx webpack --env.lambdas=${LAMBDAS}
 
 bundle_dir="build/bundle/"
 artifact_dir="build/artifacts/"
-version_num=$(node version.js)
+version_num=$(jq -r '.version' < package.json | cut -d . -f 1,2).$(date +%s)
 git_rev=$(git rev-parse --short HEAD)
 
 mkdir -p ${artifact_dir}
