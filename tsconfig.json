@@ -1,6 +1,7 @@
 {
     "compilerOptions": {
       "outDir": "./build",
+      "strict": true,
       "allowJs": false,
       "lib": ["es2017"],
       "target": "es5",
