@@ -7,7 +7,7 @@ import { ExaminerWorkSchedule } from '../../../common/domain/Journal.d';
 const journalRetriever: JournalRetriever =
   context.get<JournalRetriever>(ServiceIdentifiers.JournalRetriever);
 
-export function handler(event: APIGatewayProxyEvent, context: Context, callback: Callback) {
+export async function handler(event: APIGatewayProxyEvent, context: Context) {
   const journal: ExaminerWorkSchedule = journalRetriever.getJournal();
-  callback(null, createResponse(journal));
+  return createResponse(journal);
 }
