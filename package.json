@@ -29,7 +29,7 @@
     "webpack-cli": "^3.1.2"
   },
   "scripts": {
-    "clean": "rimraf build",
+    "clean": "rimraf build artefacts",
     "compile": "tsc",
     "bootstrap": "json2ts schema/schemaExaminerWorkSchedule.json > src/common/domain/Journal.d.ts",
     "lint": "tslint --project .",
