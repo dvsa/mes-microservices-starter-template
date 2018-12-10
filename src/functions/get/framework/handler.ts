@@ -1,4 +1,4 @@
-import { APIGatewayProxyEvent, Context, Callback } from 'aws-lambda';
+import { APIGatewayProxyEvent, Context } from 'aws-lambda';
 import context, { ServiceIdentifiers } from '../application/context';
 import { JournalRetriever } from '../application/service/JournalRetriever';
 import createResponse from '../../../common/application/utils/createResponse';
