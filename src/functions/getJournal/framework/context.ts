@@ -1,8 +1,8 @@
 import 'reflect-metadata';
 
 import { Container } from 'inversify';
-import { JournalRetriever } from './service/JournalRetriever';
-import { StaticJournalRetriever } from './service/StaticJournalRetriever';
+import { JournalRetriever } from '../application/service/JournalRetriever';
+import { StaticJournalRetriever } from '../application/service/StaticJournalRetriever';
 
 export enum ServiceIdentifiers {
   JournalRetriever = 'JournalRetriever',

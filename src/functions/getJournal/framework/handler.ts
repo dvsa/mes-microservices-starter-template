@@ -1,5 +1,5 @@
 import { APIGatewayProxyEvent, Context } from 'aws-lambda';
-import context, { ServiceIdentifiers } from '../application/context';
+import context, { ServiceIdentifiers } from './context';
 import { JournalRetriever } from '../application/service/JournalRetriever';
 import createResponse from '../../../common/application/utils/createResponse';
 import { ExaminerWorkSchedule } from '../../../common/domain/Journal.d';
