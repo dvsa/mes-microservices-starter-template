@@ -34,6 +34,8 @@
     "bootstrap": "json2ts schema/schemaExaminerWorkSchedule.json > src/common/domain/Journal.d.ts",
     "lint": "tslint --project tslint.json",
     "package": "./package.sh",
+    "postci": "npm run bootstrap",
+    "postinstall": "npm run bootstrap",
     "test": "npm run compile && jasmine"
   },
   "bugs": {
