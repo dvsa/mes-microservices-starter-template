@@ -1,4 +1,4 @@
-import context, { ServiceIdentifiers } from '../context';
+import context, { ServiceIdentifiers } from '../../framework/context';
 import { ExaminerWorkSchedule } from '../../../../common/domain/Journal';
 import { JournalRetriever } from '../../application/service/JournalRetriever';
 import { handler } from '../handler';
