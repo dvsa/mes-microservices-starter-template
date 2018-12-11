@@ -17,6 +17,7 @@
     "@types/jasmine": "^2.8.9",
     "@types/node": "^10.12.0",
     "jasmine": "^3.3.1",
+    "jasmine-spec-reporter": "^4.2.1",
     "json-schema-to-typescript": "^6.1.0",
     "rimraf": "^2.6.2",
     "ts-loader": "^5.2.2",
@@ -32,7 +33,7 @@
     "bootstrap": "json2ts schema/schemaExaminerWorkSchedule.json > src/common/domain/Journal.d.ts",
     "lint": "tslint --project tslint.json",
     "package": "./package.sh",
-    "test": "true"
+    "test": "npm run compile && jasmine"
   },
   "bugs": {
     "url": "https://github.com/dvsa/mes-journal-service/issues"

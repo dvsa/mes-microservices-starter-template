@@ -1,8 +1,9 @@
 import 'reflect-metadata';
 import { StaticJournalRetriever } from '../StaticJournalRetriever';
+import { JournalRetriever } from '../JournalRetriever';
 
 describe('StaticJournalRetriever', () => {
-  let staticJournalRetriever;
+  let staticJournalRetriever: JournalRetriever;
   beforeEach(() => {
     staticJournalRetriever = new StaticJournalRetriever();
   });
