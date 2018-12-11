@@ -56,6 +56,7 @@ describe('getJournal handler', () => {
       const resp = await handler(dummyApigwEvent, dummyContext);
 
       expect(resp.statusCode).toBe(502);
+      expect(createResponse.default).toHaveBeenCalledWith('Unable to retrieve journal', 502);
     });
   });
 });
