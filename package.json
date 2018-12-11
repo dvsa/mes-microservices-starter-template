@@ -15,12 +15,9 @@
   "devDependencies": {
     "@types/aws-lambda": "^8.10.13",
     "@types/jasmine": "^2.8.9",
-    "@types/jest": "^23.3.7",
     "@types/node": "^10.12.0",
-    "jest": "^23.6.0",
     "json-schema-to-typescript": "^6.1.0",
     "rimraf": "^2.6.2",
-    "ts-jest": "^23.10.4",
     "ts-loader": "^5.2.2",
     "tslint": "^5.11.0",
     "tslint-config-airbnb": "^5.11.0",
@@ -34,8 +31,7 @@
     "bootstrap": "json2ts schema/schemaExaminerWorkSchedule.json > src/common/domain/Journal.d.ts",
     "lint": "tslint --project tslint.json",
     "package": "./package.sh",
-    "test": "jest --coverage",
-    "testw": "jest --watch"
+    "test": "true"
   },
   "bugs": {
     "url": "https://github.com/dvsa/mes-journal-service/issues"
