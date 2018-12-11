@@ -4,6 +4,7 @@ import { JournalRetriever } from '../application/service/JournalRetriever';
 import createResponse from '../../../common/application/utils/createResponse';
 import { ExaminerWorkSchedule } from '../../../common/domain/Journal.d';
 import Response from '../../../common/application/api/Response';
+import { HttpStatus } from '../../../common/application/api/HttpStatus';
 
 export async function handler(event: APIGatewayProxyEvent, fnCtx: Context) {
   const journalRetriever = context.get<JournalRetriever>(ServiceIdentifiers.JournalRetriever);
@@ -14,7 +15,7 @@ export async function handler(event: APIGatewayProxyEvent, fnCtx: Context) {
     response = createResponse(journal);
   } catch (err) {
     console.error(err);
-    response = createResponse('Unable to retrieve journal', 502);
+    response = createResponse('Unable to retrieve journal', HttpStatus.BAD_GATEWAY);
   }
   return response;
 }
