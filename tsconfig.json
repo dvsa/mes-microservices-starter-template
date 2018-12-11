@@ -12,10 +12,10 @@
       "experimentalDecorators": true
     },
     "include": [
-      "./src/**/*"
+      "./src/**/*",
+      "./spec/**/*"
     ],
     "exclude": [
-      "node_modules",
-      "src/**/*.spec.ts",
+      "node_modules"
     ]
   }
