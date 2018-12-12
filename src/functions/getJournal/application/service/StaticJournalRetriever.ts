@@ -2,7 +2,6 @@ import { JournalRetriever } from './JournalRetriever';
 import { ExaminerWorkSchedule } from '../../../../common/domain/Journal.d';
 import { injectable, inject } from 'inversify';
 import { Logger } from '../../../../common/application/utils/logging/Logger';
-import { ServiceIdentifiers } from '../../framework/context';
 
 @injectable()
 export class StaticJournalRetriever implements JournalRetriever {
