@@ -5,11 +5,10 @@ import createResponse from '../../../common/application/utils/createResponse';
 import { ExaminerWorkSchedule } from '../../../common/domain/Journal.d';
 import Response from '../../../common/application/api/Response';
 import { HttpStatus } from '../../../common/application/api/HttpStatus';
-import { Logger } from '../../../common/application/utils/logging/Logger';
+import * as logger from '../../../common/application/utils/logger';
 
 export async function handler(event: APIGatewayProxyEvent, fnCtx: Context) {
   const journalRetriever = context.get<JournalRetriever>(ServiceIdentifiers.JournalRetriever);
-  const logger = context.get<Logger>(ServiceIdentifiers.Logger);
 
   let response: Response;
   try {

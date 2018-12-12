@@ -1,21 +1,13 @@
 import { JournalRetriever } from './JournalRetriever';
 import { ExaminerWorkSchedule } from '../../../../common/domain/Journal.d';
-import { injectable, inject } from 'inversify';
-import { Logger } from '../../../../common/application/utils/logging/Logger';
+import { injectable } from 'inversify';
+import * as logger from '../../../../common/application/utils/logger';
 
 @injectable()
 export class StaticJournalRetriever implements JournalRetriever {
 
-  private logger: Logger;
-
-  constructor(
-    @inject('Logger') private loggerDep: Logger,
-  ) {
-    this.logger = loggerDep;
-  }
-
   getJournal(): ExaminerWorkSchedule {
-    this.logger.info('Returning static journal...');
+    logger.info('Returning static journal...');
     return {
       staffNumber: 12345,
       examinerName: {
