@@ -7,7 +7,13 @@ import { ServiceIdentifiers } from '../../framework/context';
 @injectable()
 export class StaticJournalRetriever implements JournalRetriever {
 
-  constructor(private logger: Logger) { }
+  private logger: Logger;
+
+  constructor(
+    @inject('Logger') private loggerDep: Logger,
+  ) {
+    this.logger = loggerDep;
+  }
 
   getJournal(): ExaminerWorkSchedule {
     this.logger.info('Returning static journal...');
