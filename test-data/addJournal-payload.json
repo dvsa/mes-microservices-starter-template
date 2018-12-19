@@ -1,0 +1,128 @@
+{
+    "email": "test@test.com",
+    "data": {
+	"testSlots": [{
+			"slot": {
+				"_slotId": 1000,
+				"start": "2018-03-05T09:00:00+01:00",
+				"duration": 57,
+				"vehicleSlotType": "B57mins",
+				"_testCentreId": 54321,
+				"testCentreName": "Example Test Centre"
+			}
+		},
+		{
+			"slot": {
+				"_slotId": 1001,
+				"start": "2018-03-05T10:15:00+01:00",
+				"duration": 57,
+				"vehicleSlotType": "B57mins",
+				"_testCentreId": 54321,
+				"testCentreName": "Example Test Centre"
+			},
+			"booking": {
+				"candidate": {
+					"_candidateId": 100,
+					"candidateName": {
+						"title": "Miss",
+						"firstName": "Aaa",
+						"secondName": "Bbb",
+						"thirdName": "Ccc",
+						"lastName": "Ddd"
+					},
+					"driverNumber": "AAAAA123456A78AA",
+					"gender": "Female",
+					"candidateAddress": {
+						"line1": "1 Some Street",
+						"line2": "Some place",
+						"line3": "Some area",
+						"line4": "Some town",
+						"line5": "Some county",
+						"postcode": "AA1 2BB"
+					},
+					"primaryTelephone": "01234 567890",
+					"secondaryTelephone": "04321 098765",
+					"mobileTelephone": "07654 123456",
+					"email": "aaaa@bbbb.com",
+					"prn": 11223344,
+					"previousADITests": 2
+				},
+				"application": {
+					"_applicationId": 1234567,
+					"_bookingSequence": "03",
+					"_checkDigits": "01",
+					"welshTest": false,
+					"extendedTest": true,
+					"meetingPlace": "Some meeting place",
+					"progressiveAccess": false,
+					"specialNeeds": "Heavily pregnant",
+					"checkMarker": true,
+					"vehicleSeats": 5,
+					"vehicleHeight": 1.75,
+					"vehicleWidth": 2.5,
+					"vehicleLength": 5.5,
+					"testCategory": "B+E"
+				},
+				"previousCancellations": ["Act of nature", "DVSA", "DSA"],
+				"business": {
+					"_id": 1000,
+					"name": "Dave's Dodgy Driving Instructors",
+					"businessAddress": {
+						"line1": "Flat 1A",
+						"line2": "1 Example Street",
+						"line3": "Example Area",
+						"line4": "Example Town",
+						"line5": "Example County",
+						"postcode": "AB12 3CD"
+					},
+					"telephone": "07890 654321"
+				}
+			}
+		},
+		{
+			"slot": {
+				"_slotId": 1002,
+				"start": "2018-03-05T11:15:00+01:00",
+				"duration": 30,
+				"_testCentreId": 54321,
+				"testCentreName": "Example Test Centre"
+			},
+			"booking": {
+				"candidate": {
+					"_candidateId": 200
+				},
+				"application": {
+					"_applicationId": 1234568,
+					"_bookingSequence": "03",
+					"_checkDigits": "01",
+					"welshTest": false,
+					"extendedTest": true,
+					"progressiveAccess": false,
+					"checkMarker": true
+				}
+			}
+		},
+		{
+			"slot": {
+				"_slotId": 1003,
+				"start": "2018-03-05T11:45:00+01:00",
+				"duration": 90,
+				"vehicleSlotType": "Voc90mins",
+				"_testCentreId": 54321,
+				"testCentreName": "Example Test Centre"
+			},
+			"booking": {
+				"application": {
+					"_applicationId": 1234569,
+					"_bookingSequence": "01",
+					"_checkDigits": "06",
+					"welshTest": false,
+					"extendedTest": true,
+					"progressiveAccess": false,
+					"checkMarker": false
+				}
+			}
+		}
+	]
+}
+}
