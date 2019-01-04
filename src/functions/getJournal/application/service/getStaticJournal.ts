@@ -386,7 +386,7 @@ export function getJournal(): ExaminerWorkSchedule {
             applicationId: 1234573,
             bookingSequence: 7,
             checkDigits: 7,
-            welshTest: false,
+            welshTest: true,
             extendedTest: false,
             meetingPlace: '',
             progressiveAccess: false,
