@@ -2,7 +2,7 @@ import { ExaminerWorkSchedule } from '../../../../common/domain/Journal';
 import * as logger from '../../../../common/application/utils/logger';
 
 export function getDynamicJournal(): ExaminerWorkSchedule {
-  logger.info('Returning static journal...');
+  logger.info('Returning dynamic journal...');
   return {
     staffNumber: 12345,
     examinerName: {
