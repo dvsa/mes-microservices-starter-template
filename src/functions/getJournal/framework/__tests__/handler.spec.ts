@@ -46,7 +46,7 @@ describe('getJournal handler', () => {
       const ifModifiedSinceApiGwEvent = lambdaTestUtils.mockEventCreator.createAPIGatewayEvent(
         {
           headers: {
-            'If-Modified-Since': 1234,
+            'If-Modified-Since': 'Mon, 7 Jan 2019 14:36:00 GMT',
           },
         },
       );

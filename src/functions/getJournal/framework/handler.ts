@@ -28,6 +28,6 @@ function tryGetIfModifiedSince(headers: { [key: string]: string }): number | nul
     return null;
   }
 
-  const isModifiedSince = parseInt(headers[ifModifedSinceHeader], 10);
+  const isModifiedSince = Date.parse(headers[ifModifedSinceHeader]);
   return isNaN(isModifiedSince) ? null : isModifiedSince;
 }
