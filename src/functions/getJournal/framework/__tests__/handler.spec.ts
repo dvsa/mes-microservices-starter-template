@@ -4,11 +4,17 @@ const lambdaTestUtils = require('aws-lambda-test-utils');
 import * as createResponse from '../../../../common/application/utils/createResponse';
 import { APIGatewayEvent, Context } from 'aws-lambda';
 import * as getJournalModule from '../../application/service/getStaticJournal';
+import * as getDynamicJournalModule from '../../application/service/getDynamicJournal';
 
 describe('getJournal handler', () => {
   const fakeJournal: ExaminerWorkSchedule = {
     examiner: {
       staffNumber: '123',
+    },
+  };
+  const fakeDynamicJournal: ExaminerWorkSchedule = {
+    examiner: {
+      staffNumber: '456',
     },
   };
   let dummyApigwEvent: APIGatewayEvent;
@@ -30,6 +36,25 @@ describe('getJournal handler', () => {
 
       expect(resp.statusCode).toBe(200);
       expect(createResponse.default).toHaveBeenCalledWith(fakeJournal);
+    });
+  });
+
+  describe('when there is an if-modified-since header', () => {
+    it('should respond with the dynamic journal', async () => {
+      spyOn(getDynamicJournalModule, 'getDynamicJournal').and.returnValue(fakeDynamicJournal);
+      createResponseSpy.and.returnValue({ statusCode: 200 });
+      const ifModifiedSinceApiGwEvent = lambdaTestUtils.mockEventCreator.createAPIGatewayEvent(
+        {
+          headers: {
+            'If-Modified-Since': 'Mon, 7 Jan 2019 14:36:00 GMT',
+          },
+        },
+      );
+
+      const resp = await handler(ifModifiedSinceApiGwEvent, dummyContext);
+
+      expect(resp.statusCode).toBe(200);
+      expect(createResponse.default).toHaveBeenCalledWith(fakeDynamicJournal);
     });
   });
 
