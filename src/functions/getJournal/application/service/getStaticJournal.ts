@@ -79,59 +79,6 @@ export function getJournal(): ExaminerWorkSchedule {
       },
       {
         slotDetail: {
-          slotId: 1002,
-          start: '2018-12-10T09:07:00+00:00',
-          duration: 57,
-        },
-        vehicleSlotType: 'B57mins',
-        testCentre: {
-          centreId: 54321,
-          centreName: 'Example Test Centre',
-          costCode: 'EXTC1',
-        },
-        booking: {
-          candidate: {
-            candidateId: 102,
-            age: 22,
-            candidateName: {
-              title: 'Mr',
-              firstName: 'Kamil',
-              lastName: 'Zielinski',
-            },
-            driverNumber: 'ZIELI965220A99HC',
-            gender: 'Male',
-            candidateAddress: {
-              addressLine1: '10 High Street',
-              addressLine2: 'Someplace',
-              addressLine3: 'Sometown',
-              addressLine4: '',
-              addressLine5: '',
-              postcode: 'AB34 5CD',
-            },
-            primaryTelephone: '01234 567890',
-            mobileTelephone: '07654 123456',
-          },
-          application: {
-            applicationId: 1234568,
-            bookingSequence: 1,
-            checkDigits: 4,
-            welshTest: false,
-            extendedTest: false,
-            meetingPlace: '',
-            progressiveAccess: false,
-            specialNeeds: '',
-            entitlementCheck: false,
-            vehicleSeats: undefined,
-            vehicleHeight: undefined,
-            vehicleWidth: undefined,
-            vehicleLength: undefined,
-            testCategory: 'B',
-            vehicleGearbox: 'Manual',
-          },
-        },
-      },
-      {
-        slotDetail: {
           slotId: 1003,
           start: '2018-12-10T10:14:00+00:00',
           duration: 57,
@@ -399,6 +346,22 @@ export function getJournal(): ExaminerWorkSchedule {
             testCategory: 'B',
             vehicleGearbox: 'Manual',
           },
+        },
+      },
+    ],
+    nonTestActivities: [
+      {
+        slotDetail: {
+          slotId: 1002,
+          start: '2012-10-05T09:07:00+01:00',
+          duration: 57,
+        },
+        activityCode: '091',
+        activityDescription: 'Travel period to detached TC and/or outstation',
+        testCentre: {
+          centreId: 54321,
+          centreName: 'Example Test Centre',
+          costCode: 'EXTC',
         },
       },
     ],
