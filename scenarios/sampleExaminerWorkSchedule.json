@@ -172,8 +172,8 @@
         "start": "2012-10-05T10:15:00+01:00",
         "duration": 57
       },
-      "activityCode": "089",
-      "activityDescription": "Management period",
+      "activityCode": "091",
+      "activityDescription": "Travel period to detached TC and/or outstation",
       "testCentre": {
         "centreId": 54321,
         "centreName": "Example Test Centre",
