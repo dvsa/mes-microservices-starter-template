@@ -167,34 +167,46 @@
   ],
   "nonTestActivity": [
     {
-      "slotId": 1001,
-      "start": "2012-10-05T10:15:00+01:00",
-      "duration": 57,
+      "slotDetail": {
+        "slotId": 1001,
+        "start": "2012-10-05T10:15:00+01:00",
+        "duration": 57
+      },
       "activityCode": "089",
       "activityDescription": "Management period",
-      "centreId": 54321,
-      "centreName": "Example Test Centre",
-      "costCode": "EXTC"
+      "testCentre": {
+        "centreId": 54321,
+        "centreName": "Example Test Centre",
+        "costCode": "EXTC"
+      }
     },
     {
-      "slotId": 1100,
-      "start": "2012-10-15T10:15:00+01:00",
-      "duration": 57,
+      "slotDetail": {
+        "slotId": 1100,
+        "start": "2012-10-15T10:15:00+01:00",
+        "duration": 57
+      },
       "activityCode": "089",
       "activityDescription": "Management period",
-      "centreId": 65432,
-      "centreName": "Example Test Centre 2",
-      "costCode": "EXTC2"
+      "testCentre": {
+        "centreId": 65432,
+        "centreName": "Example Test Centre 2",
+        "costCode": "EXTC2"
+      }
     },
     {
-      "slotId": 1200,
-      "start": "2012-10-22T10:15:00+01:00",
-      "duration": 57,
+      "slotDetail": {
+        "slotId": 1200,
+        "start": "2012-10-22T10:15:00+01:00",
+        "duration": 57
+      },
       "activityCode": "089",
       "activityDescription": "Management period",
-      "centreId": 54321,
-      "centreName": "Example Test Centre",
-      "costCode": "EXTC"
+      "testCentre": {
+        "centreId": 54321,
+        "centreName": "Example Test Centre",
+        "costCode": "EXTC"
+      }
     }
   ],
   "advanceTestSlot": [
