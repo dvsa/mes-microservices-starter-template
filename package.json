@@ -34,6 +34,8 @@
     "package": "./package.sh",
     "postci": "npm run bootstrap",
     "postinstall": "npm run bootstrap",
+    "prepush": "npm run security-scan && npm run lint && npm test",
+    "security-scan": "git secrets --scan && git log -p | scanrepo",
     "test": "npm run compile && jasmine"
   },
   "bugs": {

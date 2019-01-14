@@ -405,7 +405,7 @@ export function getDynamicJournal(): ExaminerWorkSchedule {
           centreName: 'Example Test Centre',
           costCode: 'EXTC',
         },
-      }
+      },
     ],
   };
 }
