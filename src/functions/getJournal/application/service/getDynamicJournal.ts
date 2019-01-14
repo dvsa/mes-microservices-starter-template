@@ -79,59 +79,6 @@ export function getDynamicJournal(): ExaminerWorkSchedule {
       },
       {
         slotDetail: {
-          slotId: 1002,
-          start: '2018-12-10T09:07:00+00:00',
-          duration: 57,
-        },
-        vehicleSlotType: 'B57mins',
-        testCentre: {
-          centreId: 54321,
-          centreName: 'Example Test Centre',
-          costCode: 'EXTC1',
-        },
-        booking: {
-          candidate: {
-            candidateId: 102,
-            age: 22,
-            candidateName: {
-              title: 'Mr',
-              firstName: 'Kamil',
-              lastName: 'Zielinski',
-            },
-            driverNumber: 'ZIELI965220A99HC',
-            gender: 'Male',
-            candidateAddress: {
-              addressLine1: '10 High Street',
-              addressLine2: 'Someplace',
-              addressLine3: 'Sometown',
-              addressLine4: '',
-              addressLine5: '',
-              postcode: 'AB34 5CD',
-            },
-            primaryTelephone: '01234 567890',
-            mobileTelephone: '07654 123456',
-          },
-          application: {
-            applicationId: 1234568,
-            bookingSequence: 1,
-            checkDigits: 4,
-            welshTest: false,
-            extendedTest: false,
-            meetingPlace: '',
-            progressiveAccess: false,
-            specialNeeds: '',
-            entitlementCheck: false,
-            vehicleSeats: undefined,
-            vehicleHeight: undefined,
-            vehicleWidth: undefined,
-            vehicleLength: undefined,
-            testCategory: 'B',
-            vehicleGearbox: 'Manual',
-          },
-        },
-      },
-      {
-        slotDetail: {
           slotId: 1003,
           start: '2018-12-10T10:14:00+00:00',
           duration: 57,
@@ -401,6 +348,64 @@ export function getDynamicJournal(): ExaminerWorkSchedule {
           },
         },
       },
+    ],
+    nonTestActivities: [
+      {
+        slotDetail: {
+          slotId: 1008,
+          start: '2018-12-10T15:00:00+00:00',
+          duration: 57,
+        },
+        activityCode: '142',
+        activityDescription: 'Personal development',
+        testCentre: {
+          centreId: 54321,
+          centreName: 'Example Test Centre',
+          costCode: 'EXTC',
+        },
+      },
+      {
+        slotDetail: {
+          slotId: 1009,
+          start: '2018-12-10T11:00:00+00:00',
+          duration: 57,
+        },
+        activityCode: '094',
+        activityDescription: 'Motorcycle maintenance/cleaning',
+        testCentre: {
+          centreId: 54321,
+          centreName: 'Example Test Centre',
+          costCode: 'EXTC',
+        },
+      },
+      {
+        slotDetail: {
+          slotId: 1010,
+          start: '2018-12-10T10:00:00+00:00',
+          duration: 57,
+        },
+        activityCode: '096',
+        activityDescription: 'Motorcycle changeover period',
+        testCentre: {
+          centreId: 54321,
+          centreName: 'Example Test Centre',
+          costCode: 'EXTC',
+        },
+      },
+      {
+        slotDetail: {
+          slotId: 1011,
+          start: '2018-12-10T13:00:00+00:00',
+          duration: 57,
+        },
+        activityCode: '091',
+        activityDescription: ' Travel period to detached test centre and /or out station',
+        testCentre: {
+          centreId: 54321,
+          centreName: 'Example Test Centre',
+          costCode: 'EXTC',
+        },
+      }
     ],
   };
 }
