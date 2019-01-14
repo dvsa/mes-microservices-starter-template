@@ -352,18 +352,60 @@ export function getJournal(): ExaminerWorkSchedule {
     nonTestActivities: [
       {
         slotDetail: {
-          slotId: 1002,
-          start: '2012-10-05T09:07:00+01:00',
+          slotId: 1008,
+          start: '2018-12-10T15:00:00+00:00',
           duration: 57,
         },
-        activityCode: '091',
-        activityDescription: 'Travel period to detached TC and/or outstation',
+        activityCode: '142',
+        activityDescription: 'Personal development',
         testCentre: {
           centreId: 54321,
           centreName: 'Example Test Centre',
           costCode: 'EXTC',
         },
       },
+      {
+        slotDetail: {
+          slotId: 1009,
+          start: '2018-12-10T11:00:00+00:00',
+          duration: 57,
+        },
+        activityCode: '094',
+        activityDescription: 'Motorcycle maintenance/cleaning',
+        testCentre: {
+          centreId: 54321,
+          centreName: 'Example Test Centre',
+          costCode: 'EXTC',
+        },
+      },
+      {
+        slotDetail: {
+          slotId: 1010,
+          start: '2018-12-10T10:00:00+00:00',
+          duration: 57,
+        },
+        activityCode: '096',
+        activityDescription: 'Motorcycle changeover period',
+        testCentre: {
+          centreId: 54321,
+          centreName: 'Example Test Centre',
+          costCode: 'EXTC',
+        },
+      },
+      {
+        slotDetail: {
+          slotId: 1011,
+          start: '2018-12-10T13:00:00+00:00',
+          duration: 57,
+        },
+        activityCode: '091',
+        activityDescription: ' Travel period to detached test centre and /or out station',
+        testCentre: {
+          centreId: 54321,
+          centreName: 'Example Test Centre',
+          costCode: 'EXTC',
+        },
+      }
     ],
   };
 }
