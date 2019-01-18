@@ -3,7 +3,7 @@ export function info(msg: string): void {
 }
 
 export function warn(msg: string): void {
-  console.log(`WARN: ${msg}`);
+  console.warn(`WARN: ${msg}`);
 }
 
 export function error(msg: string): void {
