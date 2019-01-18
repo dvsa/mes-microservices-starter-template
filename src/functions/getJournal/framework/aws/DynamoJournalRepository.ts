@@ -6,18 +6,18 @@ const ddb = new DynamoDB.DocumentClient();
 const tableName = getJournalTableName();
 
 export async function getJournal(staffNumber: string): Promise<JournalWrapper | null> {
-  try {
-    const journalGetResult = await ddb.get({
-      TableName: tableName,
-      Key: {
-        staffNumber,
-      },
-    }).promise();
-    return journalGetResult.Item as JournalWrapper;
-  } catch (error) {
-    logger.error(error);
+  const journalGetResult = await ddb.get({
+    TableName: tableName,
+    Key: {
+      staffNumber,
+    },
+  }).promise();
+
+  if (journalGetResult.Item === undefined) {
     return null;
   }
+
+  return journalGetResult.Item as JournalWrapper;
 }
 
 function getJournalTableName(): string {
