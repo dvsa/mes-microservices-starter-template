@@ -428,17 +428,6 @@
         }
       }
     },
-    "testSlots": {
-      "description": "A collection of test slots, possibly populated with booking data",
-      "type": "array",
-      "items": {
-        "properties": {
-          "testSlot": {
-            "$ref": "#/definitions/testSlot"
-          }
-        }
-      }
-    },
     "personalCommitments": {
       "$id": "#/properties/personalCommitments",
       "description": "A collection of the examiner's personal commitment(s)",
@@ -522,7 +511,11 @@
       "$ref": "#/definitions/examiner"
     },
     "testSlots": {
-      "$ref": "#/definitions/testSlots"
+      "description": "A collection of test slots, possibly populated with booking data",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/testSlot"
+      }
     },
     "personalCommitments": {
       "$ref": "#/definitions/personalCommitments"
