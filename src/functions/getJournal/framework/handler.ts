@@ -2,7 +2,7 @@ import { APIGatewayProxyEvent, Context } from 'aws-lambda';
 import createResponse from '../../../common/application/utils/createResponse';
 import { HttpStatus } from '../../../common/application/api/HttpStatus';
 import * as logger from '../../../common/application/utils/logger';
-import getJournal from '../application/service/getJournal';
+import { findJournal } from '../application/service/FindJournal';
 
 export async function handler(event: APIGatewayProxyEvent, fnCtx: Context) {
   const staffNumber = getStaffNumber(event.pathParameters);
@@ -11,7 +11,7 @@ export async function handler(event: APIGatewayProxyEvent, fnCtx: Context) {
   }
 
   try {
-    const journal = await getJournal(staffNumber);
+    const journal = await findJournal(staffNumber);
     if (journal === null) {
       return createResponse({}, HttpStatus.NOT_FOUND);
     }
