@@ -18,7 +18,7 @@ export async function handler(event: APIGatewayProxyEvent, fnCtx: Context) {
     return createResponse(journal);
   } catch (err) {
     logger.error(err);
-    return createResponse('Unable to retrieve journal', HttpStatus.BAD_GATEWAY);
+    return createResponse('Unable to retrieve journal', HttpStatus.INTERNAL_SERVER_ERROR);
   }
 }
 

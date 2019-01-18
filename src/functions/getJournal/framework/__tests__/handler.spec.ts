@@ -38,14 +38,14 @@ describe('getJournal handler', () => {
   });
 
   describe('given the JournalRetriever throws', () => {
-    it('should return an error response', async () => {
+    it('should respond with internal server error', async () => {
       spyOn(FindJournal, 'findJournal').and.throwError('Unable to retrieve journal');
-      createResponseSpy.and.returnValue({ statusCode: 502 });
+      createResponseSpy.and.returnValue({ statusCode: 500 });
 
       const resp = await handler(dummyApigwEvent, dummyContext);
 
-      expect(resp.statusCode).toBe(502);
-      expect(createResponse.default).toHaveBeenCalledWith('Unable to retrieve journal', 502);
+      expect(resp.statusCode).toBe(500);
+      expect(createResponse.default).toHaveBeenCalledWith('Unable to retrieve journal', 500);
     });
   });
 
