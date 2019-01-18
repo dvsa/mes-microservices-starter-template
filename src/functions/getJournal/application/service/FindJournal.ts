@@ -1,5 +1,5 @@
 import { getJournal } from '../../framework/aws/DynamoJournalRepository';
-import { ExaminerWorkSchedule } from '../../../../common/domain/Journal';
+import { ExaminerWorkSchedule, SlotDetail } from '../../../../common/domain/Journal';
 import * as moment from 'moment';
 
 export async function findJournal(staffNumber: string): Promise<ExaminerWorkSchedule | null> {
@@ -24,13 +24,25 @@ function updateDates(journal: ExaminerWorkSchedule): ExaminerWorkSchedule {
     testSlots: journal.testSlots ? journal.testSlots.map(testSlot => (
       {
         ...testSlot,
-        slotDetail: {
-          ...testSlot.slotDetail,
-          // @ts-ignore
-          start: formatDateToToday(testSlot.slotDetail.start),
-        },
+        // @ts-ignore
+        slotDetail: slotDetailStartingToday(testSlot.slotDetail),
       }
     )) : [],
+    nonTestActivities: journal.nonTestActivities ? journal.nonTestActivities.map(nta => (
+      {
+        ...nta,
+        // @ts-ignore
+        slotDetail: slotDetailStartingToday(nta.slotDetail),
+      }
+    )) : [],
+  };
+}
+
+function slotDetailStartingToday(slotDetail: SlotDetail) {
+  return {
+    ...slotDetail,
+    // @ts-ignore
+    start: formatDateToToday(slotDetail.start),
   };
 }
 

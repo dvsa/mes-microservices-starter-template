@@ -440,18 +440,6 @@
         }
       }
     },
-    "nonTestActivities": {
-      "$id": "#/properties/nonTestActivities",
-      "description": "A collection of the examiner's non test activity(s) (associated with a test slot duration)",
-      "type": "array",
-      "items": {
-        "properties": {
-          "nonTestActivity": {
-            "$ref": "#/definitions/nonTestActivity"
-          }
-        }
-      }
-    },
     "advanceTestSlots": {
       "$id": "#/properties/advanceTestSlots",
       "description": "A collection of an examiner's future test slots",
@@ -521,7 +509,11 @@
       "$ref": "#/definitions/personalCommitments"
     },
     "nonTestActivities": {
-      "$ref": "#/definitions/nonTestActivities"
+      "description": "A collection of the examiner's non test activity(s) (associated with a test slot duration)",
+      "type": "array",
+      "items": {
+        "$ref": "#/definitions/nonTestActivity"
+      }
     },
     "advanceTestSlots": {
       "$ref": "#/definitions/advanceTestSlots"
