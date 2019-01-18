@@ -491,7 +491,6 @@
   "$schema": "http://json-schema.org/draft-07/schema#",
   "id": "https://example.com/arrays.schema.json",
   "title": "Examiner Work Schedule",
-  "version": "{{VERSION_PLACEHOLDER}}",
   "type": "object",
   "description": "JSON Schema definition for Examiner Work Schedule",
   "properties": {
