@@ -42,11 +42,11 @@ function slotDetailStartingToday(slotDetail: SlotDetail) {
   return {
     ...slotDetail,
     // @ts-ignore
-    start: formatDateToToday(slotDetail.start),
+    start: formatDateToSameTimeToday(slotDetail.start),
   };
 }
 
-function formatDateToToday(date: string) {
+function formatDateToSameTimeToday(date: string) {
   const now = moment();
 
   const oldTimeToday = moment(date)
