@@ -1,33 +1,33 @@
 import { APIGatewayProxyEvent, Context } from 'aws-lambda';
 import createResponse from '../../../common/application/utils/createResponse';
-import { ExaminerWorkSchedule } from '../../../common/domain/Journal.d';
-import Response from '../../../common/application/api/Response';
 import { HttpStatus } from '../../../common/application/api/HttpStatus';
 import * as logger from '../../../common/application/utils/logger';
-import { getJournal } from '../application/service/getStaticJournal';
-import { getDynamicJournal } from '../application/service/getDynamicJournal';
+import { findJournal } from '../application/service/FindJournal';
 
 export async function handler(event: APIGatewayProxyEvent, fnCtx: Context) {
-  let response: Response;
-  const modifiedSince = tryGetIfModifiedSince(event.headers);
+  const staffNumber = getStaffNumber(event.pathParameters);
+  if (staffNumber === null) {
+    return createResponse('No staffNumber provided', HttpStatus.BAD_REQUEST);
+  }
+
   try {
-    const journal: ExaminerWorkSchedule = modifiedSince ? getDynamicJournal() : getJournal();
-    response = createResponse(journal);
+    const journal = await findJournal(staffNumber);
+    if (journal === null) {
+      return createResponse({}, HttpStatus.NOT_FOUND);
+    }
+    return createResponse(journal);
   } catch (err) {
     logger.error(err);
-    response = createResponse('Unable to retrieve journal', HttpStatus.BAD_GATEWAY);
+    return createResponse('Unable to retrieve journal', HttpStatus.INTERNAL_SERVER_ERROR);
   }
-  return response;
 }
 
-function tryGetIfModifiedSince(headers: { [key: string]: string }): number | null {
-  const ifModifedSinceHeader =  Object.keys(headers)
-    .find(key => key.toLowerCase() === 'if-modified-since');
-
-  if (!ifModifedSinceHeader) {
+function getStaffNumber(pathParams: { [key: string]: string } | null) : string | null {
+  if (pathParams === null
+        || typeof pathParams.staffNumber !== 'string'
+        || pathParams.staffNumber.trim().length === 0) {
+    logger.warn('No staffNumber path parameter found');
     return null;
   }
-
-  const isModifiedSince = Date.parse(headers[ifModifedSinceHeader]);
-  return isNaN(isModifiedSince) ? null : isModifiedSince;
+  return pathParams.staffNumber;
 }
