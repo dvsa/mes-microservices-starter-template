@@ -1,5 +1,5 @@
 import { DynamoDB } from 'aws-sdk';
-import { JournalWrapper } from '../../domain/journalWrapper';
+import { JournalWrapper } from '../../domain/JournalWrapper';
 import * as logger from '../../../../common/application/utils/logger';
 
 const ddb = new DynamoDB.DocumentClient();
