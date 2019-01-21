@@ -38,7 +38,7 @@ function updateDates(journal: ExaminerWorkSchedule): ExaminerWorkSchedule {
   };
 }
 
-function slotDetailStartingToday(slotDetail: SlotDetail) {
+function slotDetailStartingToday(slotDetail: SlotDetail): SlotDetail {
   return {
     ...slotDetail,
     // @ts-ignore
@@ -46,7 +46,7 @@ function slotDetailStartingToday(slotDetail: SlotDetail) {
   };
 }
 
-function formatDateToSameTimeToday(date: string) {
+function formatDateToSameTimeToday(date: string): string {
   const now = moment();
 
   const oldTimeToday = moment(date)

@@ -25,7 +25,7 @@ describe('getJournal handler', () => {
     dummyContext = lambdaTestUtils.mockContextCreator(() => null);
   });
 
-  describe('given the JournalRetriever returns a journal', () => {
+  describe('given the FindJournal returns a journal', () => {
     it('should return a successful response with the journal', async () => {
       spyOn(FindJournal, 'findJournal').and.returnValue(fakeJournal);
       createResponseSpy.and.returnValue({ statusCode: 200 });
@@ -37,7 +37,19 @@ describe('getJournal handler', () => {
     });
   });
 
-  describe('given the JournalRetriever throws', () => {
+  describe('given the FindJournal returns null', () => {
+    it('should return HTTP 404', async () => {
+      spyOn(FindJournal, 'findJournal').and.returnValue(null);
+      createResponseSpy.and.returnValue({ statusCode: 404 });
+
+      const resp = await handler(dummyApigwEvent, dummyContext);
+
+      expect(resp.statusCode).toBe(404);
+      expect(createResponse.default).toHaveBeenCalledWith({}, 404);
+    });
+  });
+
+  describe('given the FindJournal throws', () => {
     it('should respond with internal server error', async () => {
       spyOn(FindJournal, 'findJournal').and.throwError('Unable to retrieve journal');
       createResponseSpy.and.returnValue({ statusCode: 500 });
