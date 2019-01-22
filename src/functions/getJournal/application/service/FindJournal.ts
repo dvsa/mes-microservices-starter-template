@@ -1,5 +1,5 @@
 import { getJournal } from '../../framework/aws/DynamoJournalRepository';
-import { ExaminerWorkSchedule, SlotDetail } from '../../../../common/domain/Journal';
+import { ExaminerWorkSchedule, TestSlot } from '../../../../common/domain/Journal';
 import * as moment from 'moment';
 
 export async function findJournal(staffNumber: string): Promise<ExaminerWorkSchedule | null> {
@@ -16,43 +16,66 @@ export async function findJournal(staffNumber: string): Promise<ExaminerWorkSche
 }
 
 /**
- * Temporary measure that will make sure every slot is today.
+ * All Code below this line is a Temporary measure that will make sure slots have the correct dates. 
  */
+
+const dateFormat = 'YYYY-MM-DDTHH:mm:ssZ'
+
 function updateDates(journal: ExaminerWorkSchedule): ExaminerWorkSchedule {
   return {
     ...journal,
-    testSlots: journal.testSlots ? journal.testSlots.map(testSlot => (
-      {
-        ...testSlot,
-        // @ts-ignore
-        slotDetail: slotDetailStartingToday(testSlot.slotDetail),
-      }
-    )) : [],
-    nonTestActivities: journal.nonTestActivities ? journal.nonTestActivities.map(nta => (
-      {
-        ...nta,
-        // @ts-ignore
-        slotDetail: slotDetailStartingToday(nta.slotDetail),
-      }
-    )) : [],
+    testSlots: journal.testSlots ? updateTestSlots(journal.testSlots) : [],
+    nonTestActivities: journal.nonTestActivities ? updateTestSlots(journal.nonTestActivities) : [],
   };
 }
 
-function slotDetailStartingToday(slotDetail: SlotDetail): SlotDetail {
-  return {
-    ...slotDetail,
-    // @ts-ignore
-    start: formatDateToSameTimeToday(slotDetail.start),
-  };
+/**
+ *  The functions below are also found in MES-Mobile-App in bin/update-mock-data.js 
+ *  So if you find a bug please fix it in both places
+ */
+
+function updateTestSlots(testSlots: any[]) {
+
+  if (testSlots.length === 0) { return [] };
+
+  let newDate = createMoment();
+  let dateProcessing = createMoment(testSlots[0].slotDetail.start);
+
+  testSlots.forEach(slot => {
+    let slotDate = createMoment(slot.slotDetail.start)
+
+    dateProcessing = caculateNewProcessingDate(dateProcessing, slotDate, newDate);
+
+    slot.slotDetail.start = updateDate(slotDate, newDate);
+  });
+
+  return testSlots;
+};
+
+function doesMatch(a: moment.Moment, b: moment.Moment) {
+  return a.isSame(b, 'day');
+};
+
+function caculateDiffInDays(a: moment.Moment, b: moment.Moment) {
+  return createMoment(a).startOf('day').diff(createMoment(b).startOf('day'), 'days');
 }
 
-function formatDateToSameTimeToday(date: string): string {
-  const now = moment();
+function createMoment(date?: moment.Moment) {
+  if (date) {
+    return moment(date, dateFormat, true);
+  }
+  return moment()
+}
 
-  const oldTimeToday = moment(date)
-    .date(now.date())
-    .month(now.month())
-    .year(now.year());
+function updateDate(currentDate: moment.Moment, newDate: moment.Moment) {
+  let daysToAdd = caculateDiffInDays(newDate, currentDate);
+  return currentDate.add(daysToAdd, 'days').format(dateFormat);
+};
 
-  return `${oldTimeToday.format(moment.HTML5_FMT.DATETIME_LOCAL_SECONDS)}+00:00`;
+function caculateNewProcessingDate(dateProcessing: moment.Moment, itemDate: moment.Moment, newDate: moment.Moment) {
+  if (doesMatch(dateProcessing, itemDate)) { return dateProcessing; }
+
+  let daysToAdd = caculateDiffInDays(itemDate, dateProcessing)
+  newDate.add(daysToAdd, 'days');
+  return createMoment(itemDate);
 }
