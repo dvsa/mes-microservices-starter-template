@@ -1,5 +1,5 @@
 import { getJournal } from '../../framework/aws/DynamoJournalRepository';
-import { ExaminerWorkSchedule, TestSlot } from '../../../../common/domain/Journal';
+import { ExaminerWorkSchedule, TestSlot, NonTestActivity } from '../../../../common/domain/Journal';
 import * as moment from 'moment';
 
 export async function findJournal(staffNumber: string): Promise<ExaminerWorkSchedule | null> {
@@ -22,60 +22,86 @@ export async function findJournal(staffNumber: string): Promise<ExaminerWorkSche
 const dateFormat = 'YYYY-MM-DDTHH:mm:ssZ'
 
 function updateDates(journal: ExaminerWorkSchedule): ExaminerWorkSchedule {
-  return {
-    ...journal,
-    testSlots: journal.testSlots ? updateTestSlots(journal.testSlots) : [],
-    nonTestActivities: journal.nonTestActivities ? updateTestSlots(journal.nonTestActivities) : [],
-  };
+
+  return new DateUpdater(journal)
+    .updateTestSlots()
+    .updateNonTestActivities()
+    .getData();
 }
 
 /**
- *  The functions below are also found in MES-Mobile-App in bin/update-mock-data.js 
- *  So if you find a bug please fix it in both places
+ *  The class below is also found in MES-Mobile-App in bin/update-mock-data.js 
+ *  So if you find a bug please fix it in both places.
  */
+class DateUpdater {
 
-function updateTestSlots(testSlots: any[]) {
+  constructor(public data: ExaminerWorkSchedule) { }
 
-  if (testSlots.length === 0) { return [] };
+  public updateTestSlots(): DateUpdater {
+    if (!this.data.testSlots) { return this }
 
-  let newDate = createMoment();
-  let dateProcessing = createMoment(testSlots[0].slotDetail.start);
-
-  testSlots.forEach(slot => {
-    let slotDate = createMoment(slot.slotDetail.start)
-
-    dateProcessing = caculateNewProcessingDate(dateProcessing, slotDate, newDate);
-
-    slot.slotDetail.start = updateDate(slotDate, newDate);
-  });
-
-  return testSlots;
-};
-
-function doesMatch(a: moment.Moment, b: moment.Moment) {
-  return a.isSame(b, 'day');
-};
-
-function caculateDiffInDays(a: moment.Moment, b: moment.Moment) {
-  return createMoment(a).startOf('day').diff(createMoment(b).startOf('day'), 'days');
-}
-
-function createMoment(date?: moment.Moment) {
-  if (date) {
-    return moment(date, dateFormat, true);
+    this.updateSlots(this.data.testSlots);
+    return this;
   }
-  return moment()
-}
 
-function updateDate(currentDate: moment.Moment, newDate: moment.Moment) {
-  let daysToAdd = caculateDiffInDays(newDate, currentDate);
-  return currentDate.add(daysToAdd, 'days').format(dateFormat);
-};
+  public updateNonTestActivities(): DateUpdater {
+    if (!this.data.nonTestActivities) { return this };
 
-function caculateNewProcessingDate(dateProcessing: moment.Moment, itemDate: moment.Moment, newDate: moment.Moment) {
-  if (doesMatch(dateProcessing, itemDate)) { return dateProcessing; }
+    this.updateSlots(this.data.nonTestActivities);
+    return this;
+  }
 
-  let daysToAdd = caculateDiffInDays(itemDate, dateProcessing)
-  newDate.add(daysToAdd, 'days');
-  return createMoment(itemDate);
+  public getData(): ExaminerWorkSchedule {
+    return this.data;
+  }
+
+  private updateSlots = (slots: any[]) => {
+
+    if (!slots || slots.length === 0 || !slots[0].slotDetail || !slots[0].slotDetail.start) {
+      return;
+    }
+
+    let newDate = this.createMoment();
+    let dateProcessing = this.createMoment(slots[0].slotDetail.start);
+
+    slots.forEach(slot => {
+      if (!slot.slotDetail || !slot.slotDetail.start) { return }
+
+      let slotDate = this.createMoment(slot.slotDetail.start)
+
+      dateProcessing = this.caculateNewProcessingDate(dateProcessing, slotDate, newDate);
+
+      slot.slotDetail.start = this.updateDate(slotDate, newDate);
+    });
+  };
+
+  private doesMatch = (a: moment.Moment, b: moment.Moment) : boolean => {
+    return a.isSame(b, 'day');
+  };
+
+  private caculateDiffInDays = (a: moment.Moment, b: moment.Moment) : number => {
+    return this.createMoment(a).startOf('day').diff(this.createMoment(b).startOf('day'), 'days');
+  };
+
+  private createMoment = (date?: string | moment.Moment) : moment.Moment => {
+    if (date) {
+      return moment(date, dateFormat, true);
+    }
+    return moment()
+  };
+
+  private updateDate = (currentDate: moment.Moment, newDate: moment.Moment) : string => {
+    let daysToAdd = this.caculateDiffInDays(newDate, currentDate);
+    return currentDate.add(daysToAdd, 'days').format(dateFormat);
+  };
+
+  private caculateNewProcessingDate = 
+    (dateProcessing: moment.Moment, itemDate: moment.Moment, newDate: moment.Moment) : moment.Moment => 
+  {
+    if (this.doesMatch(dateProcessing, itemDate)) { return dateProcessing; }
+
+    let daysToAdd = this.caculateDiffInDays(itemDate, dateProcessing)
+    newDate.add(daysToAdd, 'days');
+    return this.createMoment(itemDate);
+  };
 }
