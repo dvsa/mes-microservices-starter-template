@@ -9,6 +9,8 @@ import * as moment from 'moment';
  */
 class DateUpdater {
 
+  private dateFormat = 'YYYY-MM-DDTHH:mm:ssZ'
+
   constructor(public data: ExaminerWorkSchedule) { }
 
   public updateTestSlots = (): DateUpdater => {
@@ -59,14 +61,14 @@ class DateUpdater {
 
   private createMoment = (date?: string | moment.Moment): moment.Moment => {
     if (date) {
-      return moment(date, dateFormat, true);
+      return moment(date, this.dateFormat, true);
     }
     return moment()
   };
 
   private updateDate = (currentDate: moment.Moment, newDate: moment.Moment): string => {
     const daysToAdd = this.caculateDiffInDays(newDate, currentDate);
-    return currentDate.add(daysToAdd, 'days').format(dateFormat);
+    return currentDate.add(daysToAdd, 'days').format(this.dateFormat);
   };
 
   private caculateNewProcessingDate =
@@ -96,8 +98,6 @@ export async function findJournal(staffNumber: string): Promise<ExaminerWorkSche
 /**
  * All Code below this line is a Temporary measure that will make sure slots have the correct dates. 
  */
-
-const dateFormat = 'YYYY-MM-DDTHH:mm:ssZ'
 
 function updateDates(journal: ExaminerWorkSchedule): ExaminerWorkSchedule {
 
