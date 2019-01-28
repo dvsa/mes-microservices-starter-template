@@ -3,7 +3,10 @@
       "outDir": "./build",
       "strict": true,
       "allowJs": false,
-      "lib": ["es2017"],
+      "lib": [
+        "es2017",
+        "dom"
+      ],
       "target": "es5",
       "types" : [
         "node",

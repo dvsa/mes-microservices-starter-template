@@ -1,0 +1,54 @@
+service: mes-journal-service
+
+provider:
+  name: aws
+  runtime: nodejs8.10
+  environment:
+    JOURNAL_DDB_TABLE_NAME: journal
+
+package:
+  individually: true
+
+functions:
+  getJournal:
+    handler: src/functions/getJournal/framework/handler.handler
+    events:
+      - http:
+          path: 'journals/{staffNumber}/personal'
+          method: get
+
+custom:
+  dynamodb:
+    start:
+      port: 8000
+      inMemory: true
+      migrate: true
+      seed: true
+    seed:
+      test:
+        sources:
+          - table: journal
+            sources: [./test-data/dynamo-seed-journal.json]
+  webpack:
+    webpackConfig: 'webpack-sls-offline.config.js'
+
+resources:
+  Resources:
+    penaltyDocuments:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: ${self:provider.environment.JOURNAL_DDB_TABLE_NAME}
+        AttributeDefinitions:
+          - AttributeName: staffNumber
+            AttributeType: S
+        KeySchema:
+          - AttributeName: staffNumber
+            KeyType: HASH
+        ProvisionedThroughput:
+          ReadCapacityUnits: 5
+          WriteCapacityUnits: 5
+
+plugins:
+  - serverless-webpack
+  - serverless-dynamodb-local
+  - serverless-offline

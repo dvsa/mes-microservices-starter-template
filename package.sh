@@ -9,13 +9,15 @@ version_num=$(jq -r '.version' < package.json | cut -d . -f 1,2).$(date +%s)
 git_rev=$(git rev-parse --short HEAD)
 
 mkdir -p ${artefact_dir}
-for func_dir in src/functions/*; do
-  func_name=$(basename ${func_dir})
-  bundle_path="${bundle_dir}${func_name}.js"
-  zip_filename="${func_name}-${version_num}-${git_rev}.zip"
-  zip_path="${artefact_dir}${zip_filename}"
-  zip -Xj ${zip_path} ${bundle_path}
-  echo "LAMBDA ARTIFACT: ${bundle_path} => ${zip_path}"
+functions=$(npx yaml2json serverless.yml | jq -r '.functions | keys | .[]')
+for func_name in ${functions}; do
+  if [ -z ${LAMBDAS} ] || echo ${LAMBDAS} | grep ${func_name}; then
+    bundle_path="${bundle_dir}${func_name}.js"
+    zip_filename="${func_name}-${version_num}-${git_rev}.zip"
+    zip_path="${artefact_dir}${zip_filename}"
+    zip -Xj ${zip_path} ${bundle_path}
+    echo "LAMBDA ARTIFACT: ${bundle_path} => ${zip_path}"
+  fi
 done
 
 if [ -d coverage ]; then

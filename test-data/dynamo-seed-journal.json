@@ -1,0 +1,323 @@
+[
+  {
+    "hash": "6slots",
+    "journal": {
+      "examinerName": {
+        "firstName": "Joe",
+        "lastName": "Bloggs",
+        "secondName": "Frederic",
+        "thirdName": "Englbert",
+        "title": "Mr"
+      },
+      "nonTestActivities": [],
+      "permTestCentre": {
+        "centreId": 54321,
+        "centreName": "Example Test Centre",
+        "costCode": "EXTC1"
+      },
+      "staffNumber": "01234567",
+      "testSlots": [
+        {
+          "booking": {
+            "application": {
+              "applicationId": 1234567,
+              "bookingSequence": 3,
+              "checkDigits": 1,
+              "entitlementCheck": false,
+              "extendedTest": false,
+              "progressiveAccess": false,
+              "specialNeeds": "Candidate has dyslexia",
+              "testCategory": "A1",
+              "vehicleGearbox": "Automatic",
+              "welshTest": false
+            },
+            "candidate": {
+              "age": 17,
+              "candidateAddress": {
+                "addressLine1": "1 Station Street",
+                "addressLine2": "Someplace",
+                "addressLine3": "Sometown",
+                "postcode": "AB12 3CD"
+              },
+              "candidateId": 101,
+              "candidateName": {
+                "firstName": "Florence",
+                "lastName": "Pearson",
+                "title": "Miss"
+              },
+              "driverNumber": "PEARS015220A99HC",
+              "gender": "Female",
+              "mobileTelephone": "07654 123456",
+              "primaryTelephone": "01234 567890",
+              "secondaryTelephone": "04321 098765"
+            },
+            "previousCancellation": [
+              {
+                "initiator": "Act of nature"
+              }
+            ]
+          },
+          "slotDetail": {
+            "duration": 57,
+            "slotId": 1001,
+            "start": "2018-12-10T08:10:00+00:00"
+          },
+          "testCentre": {
+            "centreId": 54321,
+            "centreName": "Example Test Centre",
+            "costCode": "EXTC1"
+          },
+          "vehicleSlotType": "B57mins"
+        },
+        {
+          "booking": {
+            "application": {
+              "applicationId": 1234569,
+              "bookingSequence": 1,
+              "checkDigits": 9,
+              "entitlementCheck": false,
+              "extendedTest": false,
+              "progressiveAccess": false,
+              "testCategory": "B1",
+              "vehicleGearbox": "Automatic",
+              "welshTest": false
+            },
+            "candidate": {
+              "age": 56,
+              "candidateAddress": {
+                "addressLine1": "My House",
+                "addressLine2": "Someplace",
+                "addressLine3": "Sometown",
+                "postcode": "AB45 6CD"
+              },
+              "candidateId": 103,
+              "candidateName": {
+                "firstName": "Jane",
+                "lastName": "Doe",
+                "title": "Mrs"
+              },
+              "driverNumber": "DOEXX625220A99HC",
+              "gender": "Female",
+              "mobileTelephone": "07654 123456"
+            },
+            "previousCancellation": [
+              {
+                "initiator": "DSA"
+              },
+              {
+                "initiator": "Act of nature"
+              }
+            ]
+          },
+          "slotDetail": {
+            "duration": 57,
+            "slotId": 1003,
+            "start": "2018-12-10T10:14:00+00:00"
+          },
+          "testCentre": {
+            "centreId": 54321,
+            "centreName": "Example Test Centre",
+            "costCode": "EXTC1"
+          },
+          "vehicleSlotType": "B57mins"
+        },
+        {
+          "booking": {
+            "application": {
+              "applicationId": 1234570,
+              "bookingSequence": 2,
+              "checkDigits": 2,
+              "entitlementCheck": false,
+              "extendedTest": false,
+              "progressiveAccess": false,
+              "testCategory": "C1+E",
+              "vehicleGearbox": "Manual",
+              "vehicleHeight": 5,
+              "vehicleLength": 10,
+              "vehicleSeats": 2,
+              "vehicleWidth": 2.5,
+              "welshTest": false
+            },
+            "candidate": {
+              "age": 30,
+              "candidateAddress": {
+                "addressLine1": "999 Letsby Avenue",
+                "addressLine2": "Someplace",
+                "addressLine3": "Sometown",
+                "postcode": "AB67 8CD"
+              },
+              "candidateId": 104,
+              "candidateName": {
+                "firstName": "Theresa",
+                "lastName": "Shaw",
+                "title": "Miss"
+              },
+              "driverNumber": "SHAWX885220A99HC",
+              "gender": "Female",
+              "mobileTelephone": "07654 123456"
+            }
+          },
+          "slotDetail": {
+            "duration": 57,
+            "slotId": 1004,
+            "start": "2018-12-10T11:11:00+00:00"
+          },
+          "testCentre": {
+            "centreId": 54321,
+            "centreName": "Example Test Centre",
+            "costCode": "EXTC1"
+          },
+          "vehicleSlotType": "B57mins"
+        },
+        {
+          "booking": {
+            "application": {
+              "applicationId": 1234571,
+              "bookingSequence": 2,
+              "checkDigits": 6,
+              "entitlementCheck": false,
+              "extendedTest": false,
+              "progressiveAccess": false,
+              "testCategory": "D",
+              "vehicleGearbox": "Automatic",
+              "vehicleHeight": 4,
+              "vehicleLength": 8.5,
+              "vehicleSeats": 20,
+              "vehicleWidth": 3.5,
+              "welshTest": false
+            },
+            "candidate": {
+              "age": 38,
+              "candidateAddress": {
+                "addressLine1": "1 Station Street",
+                "addressLine2": "Someplace",
+                "addressLine3": "Somearea",
+                "addressLine4": "Somecity",
+                "postcode": "UB40 1AA"
+              },
+              "candidateId": 105,
+              "candidateName": {
+                "firstName": "Ali",
+                "lastName": "Campbell",
+                "title": "Mr"
+              },
+              "driverNumber": "CAMPB805220A89HC",
+              "gender": "Male",
+              "mobileTelephone": "07654 123456",
+              "primaryTelephone": "01234 567890"
+            }
+          },
+          "slotDetail": {
+            "duration": 57,
+            "slotId": 1005,
+            "start": "2018-12-10T12:38:00+00:00"
+          },
+          "testCentre": {
+            "centreId": 54321,
+            "centreName": "Example Test Centre",
+            "costCode": "EXTC1"
+          },
+          "vehicleSlotType": "B57mins"
+        },
+        {
+          "booking": {
+            "application": {
+              "applicationId": 1234572,
+              "bookingSequence": 1,
+              "checkDigits": 3,
+              "entitlementCheck": false,
+              "extendedTest": false,
+              "progressiveAccess": false,
+              "testCategory": "D+E",
+              "vehicleGearbox": "Manual",
+              "vehicleHeight": 5,
+              "vehicleLength": 15,
+              "vehicleSeats": 50,
+              "vehicleWidth": 2,
+              "welshTest": false
+            },
+            "candidate": {
+              "age": 27,
+              "candidateAddress": {
+                "addressLine1": "The Gables Cottage",
+                "addressLine2": "Home Farm",
+                "addressLine3": "Farm Road",
+                "addressLine4": "Farm Area",
+                "addressLine5": "Farmtown",
+                "postcode": "FA43 9XY"
+              },
+              "candidateId": 106,
+              "candidateName": {
+                "firstName": "James",
+                "lastName": "Brown",
+                "title": "Mr"
+              },
+              "driverNumber": "BROWN915220A99HC",
+              "gender": "Male",
+              "mobileTelephone": "07654 123456",
+              "primaryTelephone": "01234 567890",
+              "secondaryTelephone": "04321 098765"
+            }
+          },
+          "slotDetail": {
+            "duration": 57,
+            "slotId": 1006,
+            "start": "2018-12-10T13:35:00+00:00"
+          },
+          "testCentre": {
+            "centreId": 54321,
+            "centreName": "Example Test Centre",
+            "costCode": "EXTC1"
+          },
+          "vehicleSlotType": "B57mins"
+        },
+        {
+          "booking": {
+            "application": {
+              "applicationId": 1234573,
+              "bookingSequence": 7,
+              "checkDigits": 7,
+              "entitlementCheck": false,
+              "extendedTest": false,
+              "progressiveAccess": false,
+              "testCategory": "B",
+              "vehicleGearbox": "Manual",
+              "welshTest": true
+            },
+            "candidate": {
+              "age": 81,
+              "candidateAddress": {
+                "addressLine1": "1 Hangar Lane",
+                "addressLine2": "Someplace",
+                "addressLine3": "Sometown",
+                "postcode": "AB78 9CD"
+              },
+              "candidateId": 107,
+              "candidateName": {
+                "firstName": "Montague",
+                "lastName": "Smythe",
+                "title": "Captain"
+              },
+              "driverNumber": "SMYTH375220A99HC",
+              "gender": "Male",
+              "primaryTelephone": "01234 567890"
+            }
+          },
+          "slotDetail": {
+            "duration": 57,
+            "slotId": 1007,
+            "start": "2018-12-10T14:32:00+00:00"
+          },
+          "testCentre": {
+            "centreId": 54321,
+            "centreName": "Example Test Centre",
+            "costCode": "EXTC1"
+          },
+          "vehicleSlotType": "B57mins"
+        }
+      ]
+    },
+    "lastUpdatedAt": 0,
+    "staffNumber": "01234567"
+  }
+]

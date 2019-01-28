@@ -2,7 +2,13 @@ import { DynamoDB } from 'aws-sdk';
 import { JournalWrapper } from '../../domain/JournalWrapper';
 import * as logger from '../../../../common/application/utils/logger';
 
-const ddb = new DynamoDB.DocumentClient();
+const createDynamoClient = () => {
+  return process.env.IS_OFFLINE
+    ? new DynamoDB.DocumentClient({ endpoint: 'http://localhost:8000' })
+    : new DynamoDB.DocumentClient();
+};
+
+const ddb = createDynamoClient();
 const tableName = getJournalTableName();
 
 export async function getJournal(staffNumber: string): Promise<JournalWrapper | null> {
