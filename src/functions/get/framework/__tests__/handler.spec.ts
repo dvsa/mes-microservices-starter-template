@@ -1,3 +1,4 @@
+import * as aws from 'aws-sdk-mock';
 import { ExaminerWorkSchedule } from '../../../../common/domain/Schema';
 import { handler } from '../handler';
 const lambdaTestUtils = require('aws-lambda-test-utils');
@@ -18,7 +19,7 @@ describe('getJournal handler', () => {
     createResponseSpy = spyOn(createResponse, 'default');
     dummyApigwEvent = lambdaTestUtils.mockEventCreator.createAPIGatewayEvent({
       pathParameters: {
-        staffNumber: '12345678',
+        staffNumber: '01234567',
       },
     });
     dummyContext = lambdaTestUtils.mockContextCreator(() => null);
@@ -26,6 +27,7 @@ describe('getJournal handler', () => {
 
   describe('given the FindJournal returns a journal', () => {
     it('should return a successful response with the journal', async () => {
+      aws.mock('DynamoDB.DocumentClient', 'get', (params, cb) => cb(null, { Item: fakeJournal }));
       createResponseSpy.and.returnValue({ statusCode: 200 });
 
       const resp: any = await handler(dummyApigwEvent, dummyContext);

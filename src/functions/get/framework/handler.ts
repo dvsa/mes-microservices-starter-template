@@ -10,29 +10,10 @@ const createDynamoClient = () => {
     : new DynamoDB.DocumentClient();
 };
 
-const ddb = createDynamoClient();
 const tableName = getTableName();
 
-function getTableName(): string {
-  let tableName = process.env.DDB_TABLE_NAME;
-  if (tableName === undefined || tableName.length === 0) {
-    logger.warn('No table name set, using the default');
-    tableName = 'ddbTable';
-  }
-  return tableName;
-}
-
-function getStaffNumber(pathParams: { [key: string]: string } | null) : string | null {
-  if (pathParams === null
-        || typeof pathParams.staffNumber !== 'string'
-        || pathParams.staffNumber.trim().length === 0) {
-    logger.warn('No staffNumber path parameter found');
-    return null;
-  }
-  return pathParams.staffNumber;
-}
-
 export async function handler(event: APIGatewayProxyEvent, fnCtx: Context) {
+  const ddb = createDynamoClient();
   const staffNumber = getStaffNumber(event.pathParameters);
   try {
 
@@ -56,4 +37,23 @@ export async function handler(event: APIGatewayProxyEvent, fnCtx: Context) {
 
   }
 
+}
+
+function getTableName(): string {
+  let tableName = process.env.DDB_TABLE_NAME;
+  if (tableName === undefined || tableName.length === 0) {
+    logger.warn('No table name set, using the default');
+    tableName = 'ddbTable';
+  }
+  return tableName;
+}
+
+function getStaffNumber(pathParams: { [key: string]: string } | null) : string | null {
+  if (pathParams === null
+        || typeof pathParams.staffNumber !== 'string'
+        || pathParams.staffNumber.trim().length === 0) {
+    logger.warn('No staffNumber path parameter found');
+    return null;
+  }
+  return pathParams.staffNumber;
 }
