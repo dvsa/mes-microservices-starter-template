@@ -1,7 +1,6 @@
-# mes-journal-service
+# mes-microservices-starter-template
 
-A serverless microservice responsible for responsible for retrieving driving examiner journal data.
-Primarily intended to be used with the [MES mobile app](https://github.com/dvsa/mes-mobile-app).
+A serverless microservice template.
 
 ## Structure
 
@@ -16,7 +15,7 @@ As per the principles of Hexagonal Architecture, each function has the following
 
 ## Bootstrap
 
-The domain model for the journal is maintained as a JSON Schema. In order to compile the project, you need to generate the type information:
+The domain model for the service is maintained as a JSON Schema. In order to compile the project, you need to generate the type information:
 
 ```shell
 npm run bootstrap

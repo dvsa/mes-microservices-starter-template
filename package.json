@@ -1,13 +1,13 @@
 {
-  "name": "mes-journal-service",
+  "name": "mes-microservices-starter-template",
   "version": "0.1.0",
   "author": "DVSA",
   "license": "MIT",
-  "description": "A suite of Lambda functions for CRUD of driving test examiner journal entries",
-  "homepage": "https://github.com/dvsa/mes-journal-service#README.md",
+  "description": "A starter template for lambda microservices in the MES project",
+  "homepage": "https://github.com/dvsa/mes-microservices-starter-template#README.md",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/dvsa/mes-journal-service.git"
+    "url": "git+https://github.com/dvsa/mes-microservices-starter-template.git"
   },
   "dependencies": {
     "aws-sdk": "^2.389.0",
@@ -41,7 +41,7 @@
   "scripts": {
     "clean": "rimraf build artefacts",
     "compile": "tsc",
-    "bootstrap": "json2ts schema/schemaExaminerWorkSchedule.json > src/common/domain/Journal.d.ts",
+    "bootstrap": "json2ts schema/exampleSchema.json > src/common/domain/Schema.d.ts",
     "lint": "tslint --project tslint.json",
     "package": "./package.sh",
     "postci": "npm run bootstrap",
@@ -50,7 +50,7 @@
     "security-scan": "git secrets --scan && git log -p | scanrepo",
     "start": "sls dynamodb install && sls offline start",
     "test": "npm run compile && jasmine",
-    "test:integration": "npm run compile && jasmine build/spec/journal.spec.js"
+    "test:integration": "npm run compile && jasmine build/spec/examples.spec.js"
   },
   "husky": {
     "hooks": {
@@ -58,6 +58,6 @@
     }
   },
   "bugs": {
-    "url": "https://github.com/dvsa/mes-journal-service/issues"
+    "url": "https://github.com/dvsa/mes-microservices-starter-template/issues"
   }
 }

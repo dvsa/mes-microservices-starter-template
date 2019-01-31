@@ -1,20 +1,20 @@
-service: mes-journal-service
+service: mes-microservices-starter-template
 
 provider:
   name: aws
   runtime: nodejs8.10
   environment:
-    JOURNAL_DDB_TABLE_NAME: journal
+    DDB_TABLE_NAME: ddbTable
 
 package:
   individually: true
 
 functions:
-  getJournal:
-    handler: src/functions/getJournal/framework/handler.handler
+  get:
+    handler: src/functions/get/framework/handler.handler
     events:
       - http:
-          path: 'journals/{staffNumber}/personal'
+          path: 'template/{staffNumber}/get'
           method: get
 
 custom:
@@ -27,8 +27,8 @@ custom:
     seed:
       test:
         sources:
-          - table: journal
-            sources: [./test-data/dynamo-seed-journal.json]
+          - table: ddbTable
+            sources: [./test-data/dynamo-seed-ddbTable.json]
   webpack:
     webpackConfig: 'webpack-sls-offline.config.js'
 
@@ -37,7 +37,7 @@ resources:
     penaltyDocuments:
       Type: AWS::DynamoDB::Table
       Properties:
-        TableName: ${self:provider.environment.JOURNAL_DDB_TABLE_NAME}
+        TableName: ${self:provider.environment.DDB_TABLE_NAME}
         AttributeDefinitions:
           - AttributeName: staffNumber
             AttributeType: S
