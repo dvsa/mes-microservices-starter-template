@@ -20,13 +20,13 @@ describe('integration test', () => {
     stopSlsOffline();
   });
 
-  it('should respond 200 for a journal that exists', (done) => {
+  it('should respond 200 for an item that exists', (done) => {
     request
-      .get('/journals/01234567/personal')
+      .get('/template/01234567/get')
       .expect(200)
       .end((err, res) => {
         if (err) throw err;
-        const response: ExaminerWorkSchedule = res.body;
+        const response: ExaminerWorkSchedule = res.body.journal;
         expect(response.staffNumber).toBe('01234567');
         // @ts-ignore
         expect(response.testSlots.length).toBe(6);
@@ -34,9 +34,9 @@ describe('integration test', () => {
       });
   });
 
-  it('should respond 404 for a journal that does not exist', (done) => {
+  it('should respond 404 for an item that does not exist', (done) => {
     request
-      .get('/journals/00000000/personal')
+      .get('/template/00000000/get')
       .expect(404)
       .end((err, res) => {
         if (err) throw err;

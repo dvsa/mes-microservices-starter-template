@@ -51,7 +51,7 @@
     "security-scan": "git secrets --scan && git log -p | scanrepo",
     "start": "sls dynamodb install && sls offline start",
     "test": "npm run compile && jasmine",
-    "test:integration": "npm run compile && jasmine build/spec/examples.spec.js"
+    "test:integration": "npm run compile && jasmine build/spec/example.spec.js"
   },
   "husky": {
     "hooks": {
