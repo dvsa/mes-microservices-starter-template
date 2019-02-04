@@ -3,6 +3,7 @@ import { DynamoDB } from 'aws-sdk';
 import * as logger from '../../../common/application/utils/logger';
 import { APIGatewayProxyEvent, Context } from 'aws-lambda';
 import createResponse from '../../../common/application/utils/createResponse';
+import Response from '../../../common/application/api/Response';
 
 const createDynamoClient = () => {
   return process.env.IS_OFFLINE
@@ -12,7 +13,7 @@ const createDynamoClient = () => {
 
 const tableName = getTableName();
 
-export async function handler(event: APIGatewayProxyEvent, fnCtx: Context) {
+export async function handler(event: APIGatewayProxyEvent, fnCtx: Context): Promise<Response> {
   const ddb = createDynamoClient();
   const staffNumber = getStaffNumber(event.pathParameters);
   try {
