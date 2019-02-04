@@ -41,7 +41,7 @@
   },
   "scripts": {
     "clean": "rimraf build artefacts",
-    "compile": "tsc",
+    "compile": "rm -rf build && tsc",
     "bootstrap": "json2ts schema/exampleSchema.json > src/common/domain/Schema.d.ts",
     "lint": "tslint --project tslint.json",
     "package": "./package.sh",
@@ -49,7 +49,7 @@
     "postinstall": "npm run bootstrap",
     "prepush": "npm run security-scan && npm run lint && npm test",
     "security-scan": "git secrets --scan && git log -p | scanrepo",
-    "start": "sls dynamodb install && sls offline start",
+    "start": "npm run compile && sls dynamodb install && sls offline start",
     "test": "npm run compile && jasmine",
     "test:integration": "npm run compile && jasmine build/spec/example.spec.js"
   },
