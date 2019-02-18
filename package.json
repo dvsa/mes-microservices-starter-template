@@ -25,6 +25,7 @@
     "jasmine": "^3.3.1",
     "jasmine-spec-reporter": "^4.2.1",
     "json-schema-to-typescript": "^6.1.0",
+    "npm-run-all": "^4.1.5",
     "rimraf": "^2.6.2",
     "serverless": "^1.36.3",
     "serverless-dynamodb-local": "^0.2.35",
@@ -42,8 +43,10 @@
   "scripts": {
     "clean": "rimraf build artefacts",
     "compile": "rm -rf build && tsc",
+    "compile-no-emit": "tsc --noEmit -p .",
     "bootstrap": "json2ts schema/exampleSchema.json > src/common/domain/Schema.d.ts",
     "lint": "tslint --project tslint.json",
+    "lint:fix": "tslint --fix -p ./",
     "package": "./package.sh",
     "postci": "npm run bootstrap",
     "postinstall": "npm run bootstrap",
@@ -55,7 +58,8 @@
   },
   "husky": {
     "hooks": {
-      "pre-push": "npm run security-scan && npm run lint && npm test && npm run test:integration"
+      "pre-push": "npm run security-scan && npm run lint && npm test && npm run test:integration",
+      "pre-commit": "run-s lint:fix lint compile-no-emit"
     }
   },
   "bugs": {
