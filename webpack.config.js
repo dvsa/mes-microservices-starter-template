@@ -12,7 +12,8 @@ module.exports = env => ({
   target: 'node',
   mode: 'production',
   entry: env && env.lambdas ?
-    env.lambdas.split(',').reduce((entryObj, fnName) => ({ ...entryObj, [fnName]: allEntries[fnName] }), {}) : allEntries,
+    env.lambdas.split(',').reduce((entryObj, fnName) => ({ ...entryObj, [fnName]: allEntries[fnName] }), {}) 
+    : allEntries,
   module: {
     rules: [
       {
