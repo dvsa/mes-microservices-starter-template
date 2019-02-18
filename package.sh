@@ -12,7 +12,7 @@ ignore_func_prefix="local"
 mkdir -p ${artefact_dir}
 functions=$(npx yaml2json serverless.yml | jq -r '.functions | keys | .[]')
 for func_name in ${functions}; do
-  if [ "$func_name"=="*$ignore_func_prefix*" ]; then
+  if [[ $func_name == *"$ignore_func_prefix"* ]]; then
   continue
   fi
   if [ -z ${LAMBDAS} ] || echo ${LAMBDAS} | grep ${func_name}; then
