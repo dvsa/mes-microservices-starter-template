@@ -7,10 +7,14 @@ bundle_dir="build/bundle/"
 artefact_dir="artefacts/"
 version_num=$(jq -r '.version' < package.json | cut -d . -f 1,2).$(date +%s)
 git_rev=$(git rev-parse --short HEAD)
+ignore_func_prefix="local"
 
 mkdir -p ${artefact_dir}
 functions=$(npx yaml2json serverless.yml | jq -r '.functions | keys | .[]')
 for func_name in ${functions}; do
+  if [[ $func_name == *"$ignore_func_prefix"* ]]; then
+  continue
+  fi
   if [ -z ${LAMBDAS} ] || echo ${LAMBDAS} | grep ${func_name}; then
     bundle_path="${bundle_dir}${func_name}.js"
     zip_filename="${func_name}-${version_num}-${git_rev}.zip"

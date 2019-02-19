@@ -21,6 +21,14 @@ The domain model for the service is maintained as a JSON Schema. In order to com
 npm run bootstrap
 ```
 
+## Run locally
+
+Use the following script to spin up the microservice locally
+
+```shell
+npm start
+```
+
 ## Build
 
 To build a zip file for every function to `build/artifacts`, run:
@@ -35,7 +43,9 @@ To build a subset of the functions, pass a comma separated list of function name
 npm run package -- get,set
 ```
 
-N.b. The build requires [jq](https://github.com/stedolan/jq).
+*N.b. The build requires [jq](https://github.com/stedolan/jq).*
+
+*Any functions delcared in serverless.yml that contain the word "local" will be ignored in the packaging process.*
 
 ## Test
 
