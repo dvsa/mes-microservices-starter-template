@@ -54,3 +54,54 @@ To run the unit tests, simply run:
 ```shell
 npm test
 ```
+
+## Logging
+
+To implement logging to a Custom AWS CloudWatch Log Group use the `createLogger` function, passing the name of the
+CloudWatch Log Group, to create an instance of the `Logger` class configured to log to CloudWatch.
+
+### Logging - Create `Logger` instance
+```typescript
+import Logger from '../../../common/application/logging/Logger';
+import { createLogger } from '../../../common/framework/logging/createLogger';
+
+const logger: Logger = await createLogger('ExampleLoggerName', process.env.CUSTOM_CWLG_NAME);
+```
+
+### Logging - Log an individual message
+```typescript
+async logger.log(message: string, logLevel: LogLevel, logData?: Bag): Promise<void>
+// where `LogLevel` can be 'debug' | 'info' | 'warn' | 'error'
+// where `Bag` is an object containing properties (i.e. `{ [propName: string]: any }`)
+```
+
+The `message`, `logLevel`, and optional additional `logData`, are combined together in to a single object and
+then JSON serialized to build the string that is sent to the logging system (i.e. CloudWatch in our case).
+
+Examples:
+```typescript
+// Individual log examples:
+await logger.log('Some debug log message', 'debug');
+await logger.log('Some information log message', 'info');
+await logger.log('Some warning log message', 'warn');
+await logger.log('Some error log message', 'error', error);
+```
+
+Note that optional additional data can be passed to provide more contextual information, regardless of log level:
+```typescript
+await logger.log('Some log message', 'info', { optionalAdditionalData: true, numOfAttempts: 3, ... });
+```
+
+### Logging - Log in batch
+```typescript
+async logger.logEvents(logEvents: LogEvent[]): Promise<void>
+```
+
+For example:
+```typescript
+import LogEvent from '../../../common/application/logging/LogEvent';
+
+// To log in batch:
+const logEvents: LogEvent[] = ...;
+await logger.logEvents(logEvents);
+```
