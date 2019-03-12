@@ -19,3 +19,4 @@ src/common/domain/Schema.d.ts
 artefacts
 .dynamodb/
 .serverless/
+.nyc_output/
