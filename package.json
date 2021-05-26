@@ -10,7 +10,7 @@
     "url": "git+https://github.com/dvsa/mes-microservices-starter-template.git"
   },
   "dependencies": {
-    "aws-sdk": "^2.389.0",
+    "aws-sdk": "^2.901.0",
     "moment": "^2.23.0"
   },
   "devDependencies": {
