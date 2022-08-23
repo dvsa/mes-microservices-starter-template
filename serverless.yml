@@ -2,53 +2,25 @@ service: mes-microservices-starter-template
 
 provider:
   name: aws
-  runtime: nodejs8.10
-  environment:
-    DDB_TABLE_NAME: ddbTable
+  runtime: nodejs16.x
+  stage: ${opt:stage, 'dev'}
 
 package:
   individually: true
 
 functions:
-  get:
-    handler: src/functions/get/framework/handler.handler
+  getLambda:
+    handler: src/functions/getLambda/framework/handler.handler
     events:
       - http:
-          path: 'template/{staffNumber}/get'
+          path: 'data/{value}'
           method: get
-
 custom:
-  dynamodb:
-    start:
-      port: 8000
-      inMemory: true
-      migrate: true
-      seed: true
-    seed:
-      test:
-        sources:
-          - table: ddbTable
-            sources: [./test-data/dynamo-seed-ddbTable.json]
+  stages:
+    - dev
   webpack:
     webpackConfig: 'webpack-sls-offline.config.js'
 
-resources:
-  Resources:
-    penaltyDocuments:
-      Type: AWS::DynamoDB::Table
-      Properties:
-        TableName: ${self:provider.environment.DDB_TABLE_NAME}
-        AttributeDefinitions:
-          - AttributeName: staffNumber
-            AttributeType: S
-        KeySchema:
-          - AttributeName: staffNumber
-            KeyType: HASH
-        ProvisionedThroughput:
-          ReadCapacityUnits: 5
-          WriteCapacityUnits: 5
-
 plugins:
   - serverless-webpack
-  - serverless-dynamodb-local
   - serverless-offline

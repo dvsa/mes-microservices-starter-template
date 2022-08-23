@@ -1,7 +1,7 @@
 #!/bin/sh -e
 LAMBDAS=$1
 
-npx webpack --env.lambdas=${LAMBDAS}
+npx webpack --env lambdas=${LAMBDAS}
 
 bundle_dir="build/bundle/"
 artefact_dir="artefacts/"
