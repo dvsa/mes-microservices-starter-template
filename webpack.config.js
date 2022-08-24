@@ -12,7 +12,7 @@ module.exports = env => ({
   target: 'node',
   mode: 'production',
   entry: env && env.lambdas ?
-    env.lambdas.split(',').reduce((entryObj, fnName) => ({ ...entryObj, [fnName]: allEntries[fnName] }), {}) 
+    env.lambdas.split(',').reduce((entryObj, fnName) => ({ ...entryObj, [fnName]: allEntries[fnName] }), {})
     : allEntries,
   module: {
     rules: [
@@ -24,7 +24,10 @@ module.exports = env => ({
     ],
   },
   resolve: {
-    extensions: [ '.ts', '.js', '.jsx', '.json' ]
+    extensions: [ '.ts', '.js', '.json' ],
+    // alias: {
+    //   '@des-common/*': ["src/common/*"]
+    // },
   },
   output: {
     filename: `[name].js`,
@@ -32,3 +35,7 @@ module.exports = env => ({
     libraryTarget: 'commonjs'
   },
 });
+
+function root(localPath) {
+  return path.resolve(__dirname, localPath);
+}
