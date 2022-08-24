@@ -20,3 +20,4 @@ artefacts
 .dynamodb/
 .serverless/
 .nyc_output/
+.env

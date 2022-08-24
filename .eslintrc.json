@@ -20,6 +20,7 @@
     "jasmine"
   ],
   "rules": {
+    "max-len": ["error", { "code": 120 }],
     "import/no-unresolved": "off",
     "class-methods-use-this": "off",
     "import/prefer-default-export": "off",

@@ -14,7 +14,5 @@
 ## Sign off process checklist
 
 - [ ] Code has been tested manually
-- [ ] Tested by QA
-- [ ] PO's approval
 - [ ] Reviewers selected in Github
 - [ ] PR link added to JIRA
