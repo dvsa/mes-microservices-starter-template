@@ -54,3 +54,9 @@ To run the unit tests, simply run:
 ```shell
 npm test
 ```
+
+## Testing workflows locally
+
+To run the GitHub actions locally for testing purposes, please see here:
+
+https://github.com/nektos/act
