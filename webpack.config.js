@@ -25,17 +25,9 @@ module.exports = env => ({
   },
   resolve: {
     extensions: [ '.ts', '.js', '.json' ],
-    // alias: {
-    //   '@des-common/*': ["src/common/*"]
-    // },
   },
   output: {
     filename: `[name].js`,
     path: path.join(__dirname, 'build', 'bundle'),
-    libraryTarget: 'commonjs'
   },
 });
-
-function root(localPath) {
-  return path.resolve(__dirname, localPath);
-}
