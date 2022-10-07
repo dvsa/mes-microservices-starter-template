@@ -3,7 +3,7 @@ name: CI
 on: push
 
 env:
-  PAT: {{ secrets.PAT }}
+  PAT: ${{ secrets.PAT }}
 
 jobs:
   tests:
