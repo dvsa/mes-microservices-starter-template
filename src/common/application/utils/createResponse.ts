@@ -1,7 +1,7 @@
 import Response from '../api/Response';
 
 export default (
-  body: {},
+  body: object | string,
   statusCode = 200,
   reqHeaders: { [id: string]: string } = {},
 ): Response => {
