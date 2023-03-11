@@ -1,2 +1,4 @@
-node_modules/*
-spec/*
+/.husky/
+/.idea/
+/node_modules/
+/spec/

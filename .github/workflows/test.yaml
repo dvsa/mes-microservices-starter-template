@@ -17,6 +17,8 @@ jobs:
           cache: 'npm'
       - name: update npm dependency
         run: npm i -g npm@7
+      - name: inject PAT
+        run: echo "//npm.pkg.github.com/:_authToken=$PAT" >> .npmrc
       - name: Install dependencies
         run: npm ci
       - name: Run lint

@@ -1,4 +1,4 @@
-name: Synk Security run
+name: Snyk Security run
 
 on: push
 

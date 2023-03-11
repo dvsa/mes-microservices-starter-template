@@ -1,5 +1,4 @@
-/* eslint-disable */
-export enum HttpStatus {
+enum HttpStatus {
   OK = 200,
   CREATED = 201,
   BAD_REQUEST = 400,
@@ -9,3 +8,5 @@ export enum HttpStatus {
   INTERNAL_SERVER_ERROR = 500,
   BAD_GATEWAY = 502,
 }
+
+export default HttpStatus;
