@@ -10,7 +10,7 @@ async function handler(event: APIGatewayProxyEvent): Promise<Response> {
     await Promise.resolve();
     return createResponse({ data: 'some data' });
   } catch (err: unknown) {
-    error('Server error', err);
+    error('Error', err);
     return createResponse('Internal server error', HttpStatus.INTERNAL_SERVER_ERROR);
   }
 }
