@@ -29,7 +29,7 @@
   },
   "dependencies": {
     "@dvsa/mes-microservice-common": "^0.8.3",
-    "aws-sdk": "^2.1333.0"
+    "aws-sdk": "^2.1354.0"
   },
   "devDependencies": {
     "@dvsa/eslint-config-des": "0.0.1",
