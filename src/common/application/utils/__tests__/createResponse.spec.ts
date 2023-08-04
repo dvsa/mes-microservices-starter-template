@@ -1,10 +1,11 @@
-import createResponse from '../createResponse';
-import Response from '../../api/Response';
+import { createResponse } from '../createResponse';
 
 describe('createResponse', () => {
-  it('should create a response with 200 status code when no status code is specified', () => {
-    const response: Response = createResponse({});
+  it('should return a response object containing a body, headers and a statusCode', () => {
+    const { body, headers, statusCode } = createResponse({});
 
-    expect(response.statusCode).toBe(200);
+    expect(body).toEqual(JSON.stringify({}));
+    expect(headers).toEqual({ 'Access-Control-Allow-Origin': '*' });
+    expect(statusCode).toEqual(200);
   });
 });

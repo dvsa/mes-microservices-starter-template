@@ -1,5 +1,7 @@
 import { APIGatewayProxyEvent } from 'aws-lambda';
-import { bootstrapLogging, error } from '@dvsa/mes-microservice-common/application/utils/logger';
+import {
+  bootstrapLogging, error,
+} from '@dvsa/mes-microservice-common/application/utils/logger';
 import { createResponse } from '../../../common/application/utils/createResponse';
 import { HttpStatus } from '../../../common/application/api/HttpStatus';
 
@@ -7,8 +9,14 @@ import { HttpStatus } from '../../../common/application/api/HttpStatus';
 // eslint-disable-next-line @typescript-eslint/require-await
 export async function handler(event: APIGatewayProxyEvent) {
   try {
-    bootstrapLogging('get-service-name', event);
-    return createResponse({ data: 'some data' });
+    bootstrapLogging('post-service-name', event);
+
+    if (!event.body) {
+      error('Event body is empty');
+      return createResponse({ msg: 'Event body is empty' }, HttpStatus.BAD_REQUEST);
+    }
+
+    return createResponse({ ...JSON.parse(event.body) });
   } catch (err: unknown) {
     if (err instanceof Error) {
       error('Error', err.message);

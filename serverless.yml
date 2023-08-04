@@ -15,6 +15,12 @@ functions:
       - http:
           path: 'data/{value}'
           method: get
+  postLambda:
+    handler: src/functions/postLambda/framework/handler.handler
+    events:
+      - http:
+          path: 'data'
+          method: post
 custom:
   stages:
     - dev
