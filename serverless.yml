@@ -2,7 +2,7 @@ service: mes-microservices-starter-template
 
 provider:
   name: aws
-  runtime: nodejs16.x
+  runtime: nodejs18.x
   stage: ${opt:stage, 'dev'}
 
 package:
