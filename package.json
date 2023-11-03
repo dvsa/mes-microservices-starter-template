@@ -28,8 +28,7 @@
     "test:jasmine-coverage": "nyc npm run test"
   },
   "dependencies": {
-    "@dvsa/mes-microservice-common": "^1.0.2",
-    "aws-sdk": "^2.1478.0"
+    "@dvsa/mes-microservice-common": "1.1.0"
   },
   "devDependencies": {
     "@dvsa/eslint-config-des": "*",
