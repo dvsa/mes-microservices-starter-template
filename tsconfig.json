@@ -1,19 +1,21 @@
 {
   "compilerOptions": {
-    "outDir": "./build",
-    "target": "es2019",
-    "module": "commonjs",
-    "strict": true,
-    "sourceMap": true,
+    /* Base Options: */
     "esModuleInterop": true,
     "skipLibCheck": true,
-    "experimentalDecorators": true,
-  },
-  "include": [
-    "./src/**/*",
-    "./spec/**/*"
-  ],
-  "exclude": [
-    "node_modules"
-  ]
+    "target": "es2022",
+    "resolveJsonModule": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    /* Strictness */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    /* If transpiling with TypeScript: */
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
+    "outDir": "dist",
+    "sourceMap": true,
+    /* If your code doesn't run in the DOM: */
+    "lib": ["es2022"]
+  }
 }
