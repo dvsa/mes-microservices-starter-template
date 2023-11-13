@@ -5,6 +5,7 @@
     "skipLibCheck": true,
     "target": "es2022",
     "resolveJsonModule": true,
+    "experimentalDecorators": true,
     "moduleDetection": "force",
     "isolatedModules": true,
     /* Strictness */
@@ -13,8 +14,15 @@
     /* For transpiling using TypeScript (tsc): */
     "moduleResolution": "NodeNext",
     "module": "NodeNext",
-    "outDir": "dist",
+    "outDir": "./build",
     "sourceMap": true,
     "lib": ["es2022"]
-  }
+  },
+  "include": [
+    "./src/**/*",
+    "./spec/**/*"
+  ],
+  "exclude": [
+    "node_modules"
+  ]
 }
