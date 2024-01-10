@@ -1,13 +1,22 @@
 {
   "compilerOptions": {
-    "outDir": "./build",
-    "target": "es2019",
-    "module": "commonjs",
-    "strict": true,
-    "sourceMap": true,
+    /* Base Options: */
     "esModuleInterop": true,
     "skipLibCheck": true,
+    "target": "es2022",
+    "resolveJsonModule": true,
     "experimentalDecorators": true,
+    "moduleDetection": "force",
+    "isolatedModules": true,
+    /* Strictness */
+    "strict": true,
+    "noUncheckedIndexedAccess": true,
+    /* For transpiling using TypeScript (tsc): */
+    "moduleResolution": "NodeNext",
+    "module": "NodeNext",
+    "outDir": "./build",
+    "sourceMap": true,
+    "lib": ["es2022"]
   },
   "include": [
     "./src/**/*",
